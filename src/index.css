@@ -1,21 +1,40 @@
 html, body {
-    overflow: hidden;
+    overflow: visible;
     margin: 0;
-    background: radial-gradient(circle at 100% 90%, #2e6aeb 0%, #3bbadd 100%);
     height: 100%;
     width: 100%;
     font-family: Inter, sans-serif, Arial;
+    scroll-behavior: smooth;
+}
+.background {
+    background: radial-gradient(circle at 100% 90%, #2e6aeb 0%, #3bbadd 100%),
+    radial-gradient(circle at 10% 0%, #2e6aeb 0%, #3bbadd 100%);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
+  
+
+html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 
 
 .header {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100vw;
     height: 20vh;
-    z-index: 1;
+    z-index: 3;
     transition: transform ease-out 0.2s, height ease-out 0.2s;
 }
 .header>div {
@@ -42,8 +61,15 @@ html, body {
     font-weight: bolder;
     font-size: 100%;
     transition: transform ease 0.2s, height ease 0.2s, flex ease 0.2s;
-    z-index: 1;
+    z-index: 4;
     flex: 1;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .header>*>button:hover {
     cursor: pointer;
@@ -65,25 +91,42 @@ html, body {
     left: 0px;
     height: 100vh;
     width: 100vw;
-    z-index: 0;
+    z-index: 1;
 }
+
 
 
 .center-div {
     position: absolute;
-    top: 25vh;
+    top: 22vh;
     left: 20vw;
     width: 70vw;
-    height: 40vw;
-    z-index: 3;
+    height: auto;
+    z-index: 2;
     opacity: 0;
-    transform: translateY(15vh);
+    transform: translateY(5vh);
+    pointer-events: none;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
-.center-div>p {
-    position: absolute;
+.center-div>h1 {
     font-size: 6.5vw;
     font-weight: bold;
-    pointer-events: none;
+    backdrop-filter: blur(2px);
+    border-radius: 8vw;
+}
+.center-div>p {
+    text-wrap: pretty;
+    margin-left: 1.3vw;
+    font-size: 2.5vw;
+    font-weight: bold;
+    backdrop-filter: blur(2px);
+    border-radius: 8vw;
 }
 .center-div>img {
     position: absolute;
@@ -94,6 +137,38 @@ html, body {
     width: 25vw;
     height: 25vw;
     pointer-events: none;
+}
+.center-div>div {
+    height: 5vh;
+}
+.background-blur {
+    position: fixed;
+    z-index: 2;
+    top: 35vh;
+    left: 18vw;
+    width: 72vw;
+    height: 40vh;
+    backdrop-filter: blur(2px);
+    border-radius: 8vw;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+.opacity-10 {
+    opacity: 0.1;
+}
+.opacity-25 {
+    opacity: 0.25;
+}
+.opacity-50 {
+    opacity: 0.50;
+}
+.opacity-75 {
+    opacity: 0.75;
+}
+.opacity-100 {
+    opacity: 1;
 }
 
 

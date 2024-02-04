@@ -14,6 +14,9 @@ const minDist = 0.01;
 const particleRadius = 7;
 const boundStrength = 200;
 const despawnDist = 50;
+const transitionSpeed = 800;
+const mouseAttractStrength = 20;
+const mouseRepelStrength = 20;
 
 
 // Program-only variables
@@ -28,6 +31,15 @@ var height = 0;
 var animFrameId = -1;
 var numDespawned = 0;
 var homeTransitionDone = false;
+var scrollableElements = [];
+var scrolling = false;
+var mouse = {
+    pos: null,
+    vec: null,
+    left: false,
+    middle: false,
+    right: false
+};
 
 
 
@@ -42,7 +54,8 @@ var baseUrl = window.location.href.split("#")[0] + "#";
 if (window.location.href.split("#").length == 1) {
     window.history.replaceState({}, "", "#");
 }
-window.addEventListener('popstate', displayContent);
+window.addEventListener("popstate", displayContent);
+window.addEventListener("scroll", handleScroll);
 
 function handleResize() {
     if (canvas != null) {
@@ -56,7 +69,29 @@ function handleResize() {
 };
 handleResize();
 
-window.addEventListener('resize', handleResize);
+window.addEventListener("resize", handleResize);
+window.addEventListener("mousemove", (e) => {
+    mouse.pos = new Pt3d(e.x, e.y, 1);
+    mouse.vec = new Vec2d(e.movementX, e.movementY);
+});
+window.addEventListener("mousedown", (e) => {
+    if (e.button == 0) {
+        mouse.left = true;
+    } else if (e.button == 1) {
+        mouse.middle = true;
+    } else if (e.button == 2) {
+        mouse.right = true;
+    }
+});
+window.addEventListener("mouseup", (e) => {
+    if (e.button == 0) {
+        mouse.left = false;
+    } else if (e.button == 1) {
+        mouse.middle = false;
+    } else if (e.button == 2) {
+        mouse.right = false;
+    }
+})
 
 
 
@@ -109,6 +144,10 @@ class Vec2d {
         this.y += vec.y;
     }
 
+    dot(vec) {
+        return this.x*vec.x + this.y*vec.y;
+    }
+
     divBy(num) {
         return new Vec2d(this.x/num, this.y/num);
     }
@@ -138,7 +177,7 @@ var bottomBoundVec = new Vec2d(0, -boundStrength);
 //
 class Particle {
     constructor() {
-        this.pos = new Pt3d(randomInt(1, width - 1), randomInt(-3*height, -2*height), 1);
+        this.pos = new Pt3d(randomInt(1, width - 1), randomInt(-2*height, -height), 1);
         this.vel = new Vec2d(0, 0);
         this.despawned = false;
 
@@ -206,8 +245,22 @@ class Particle {
         })
         this.vel.add(gravVec);
         this.checkBounds();
+        this.mouseInteract();
 
         this.pos.add(this.vel);
+    }
+
+    mouseInteract() {
+        if (mouse.pos == null || mouse.vec == null || (mouse.left && mouse.right)) return;
+        else if (mouse.left) {
+            const distToMouse = mouse.pos.eucDist(this.pos);
+            const vecToMouse = this.pos.vecTo(mouse.pos);
+            this.repel(distToMouse, vecToMouse.mulBy(mouseAttractStrength));
+        } else if (mouse.right) {
+            const distToMouse = mouse.pos.eucDist(this.pos);
+            const vecFromMouse = mouse.pos.vecTo(this.pos);
+            this.repel(distToMouse, vecFromMouse.mulBy(mouseRepelStrength));
+        }
     }
 
     checkBounds() {
@@ -280,7 +333,7 @@ function despawnParticles(endFunc) {
         numDespawned = 0;
         endFunc();
     } else {
-        setTimeout(() => {despawnParticles(endFunc)}, 200)
+        setTimeout(() => {despawnParticles(endFunc)}, 100)
     };
 }
 
@@ -305,14 +358,14 @@ function displayContent() {
             setTimeout(() => {
                 content.innerHTML = homeScreen();
                 transitionToHomeScreen();
-            }, 1300);
+            }, transitionSpeed + 10);
         } else if (state == "projects") {
             state = "transitioning";
             transitionOffProjectsScreen();
             setTimeout(() => {
                 content.innerHTML = homeScreen();
                 transitionToHomeScreen();
-            }, 1300);
+            }, transitionSpeed + 10);
         } else {
             state = "transitioning";
             content.innerHTML = homeScreen();
@@ -334,7 +387,7 @@ function displayContent() {
             setTimeout(() => {
                 content.innerHTML = aboutScreen();
                 transitionToAboutScreen();
-            }, 1300);
+            }, transitionSpeed + 10);
         } else {
             state = "transitioning";
             content.innerHTML = aboutScreen();
@@ -356,7 +409,7 @@ function displayContent() {
             setTimeout(() => {
                 content.innerHTML = projectsScreen();
                 transitionToProjectsScreen();
-            }, 1300);
+            }, transitionSpeed + 10);
         } else {
             state = "transitioning";
             content.innerHTML = projectsScreen();
@@ -433,20 +486,22 @@ function displayHeader() {
         dropDownLinks();
     };
 
-    // Disables right-clicks for buttons
-    homeButton.addEventListener("contextmenu", (e) => {
+    // Disables right-click context menus
+    window.addEventListener("contextmenu", (e) => {
         e.preventDefault();
     });
-    aboutButton.addEventListener("contextmenu", (e) => {
-        e.preventDefault();
-    });
-    projectsButton.addEventListener("contextmenu", (e) => {
-        e.preventDefault();
-    });
-    linksButton.addEventListener("contextmenu", (e) => {
-        e.preventDefault();
-    });
+    // aboutButton.addEventListener("contextmenu", (e) => {
+    //     e.preventDefault();
+    // });
+    // projectsButton.addEventListener("contextmenu", (e) => {
+    //     e.preventDefault();
+    // });
+    // linksButton.addEventListener("contextmenu", (e) => {
+    //     e.preventDefault();
+    // });
 }
+
+//! Begin DOM component functions
 
 // Returns home screen elements
 //
@@ -455,38 +510,37 @@ function homeScreen() {
         `
         <canvas id="particle-sim" class="particle-sim"></canvas>
         <div class="center-div" id="main-container">
-            <p>Welcome</p>
+            <div></div>
+            <div></div>
+            <div></div>
+            <h1 class="scrollable-element">Welcome</h1>
+            <p class="scrollable-element">My name is Ryan Lechner, and I'm
+            a graphics-focused software developer. I'm currently looking for work 
+            in project-based roles. For more details on my experience and specialties, 
+            head on over to the about page</p>
+            <div></div>
+            <p class="scrollable-element">If you want to play around with
+            the particles on this page, click and drag your mouse around</p>
+            <p class="scrollable-element">Left-click will attract nearby
+            particles, and right-click will repel them</p>
+            <div></div>
+            <p class="scrollable-element">I will be keeping this webpage
+            up-to-date with new projects and current ventures</p>
+            <div></div>
+            <p class="scrollable-element">Feel free to contact me on my 
+            LinkedIn, which can be found in the Links dropdown menu</p>
+            <p class="scrollable-element">Have a pleasure exploring!</p>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
         `
     )
 }
-
-function transitionToHomeScreen() {
-    setTimeout(() => {
-        console.log("Transitioning to home screen");
-        const container = document.getElementById("main-container");
-        runParticleSim(numParticles);
-        container.style.transition = "ease-in-out 1.3s";
-        container.style.opacity = "1";
-        container.style.transform = "translateY(0vh)";
-        setTimeout(() => {
-            state = "simulating";
-        }, 1300);
-    }, 300);
-}
-
-function transitionOffHomeScreen() {
-    console.log("Transitioning off home screen");
-    const container = document.getElementById("main-container");
-    container.style.transition = "ease-in-out 1.5s 0.6s";
-    container.style.opacity = "0";
-    container.style.transform = "translateY(15vh)";
-    setTimeout(() => {
-        homeTransitionDone = true;
-    }, 2100);
-}
-
-
 
 // Returns about screen elements
 //
@@ -494,36 +548,25 @@ function aboutScreen() {
     return (
         `
         <div class="center-div" id="main-container">
-            <img src="./../public/images/prof_pic.JPG" alt="picture of me" />
-            <p>Ryan</p>
-            <p style="margin-top: 12vw; margin-left: 2.7vw">Lechner</p>
+            <img src="./../public/images/prof_pic.JPG" alt="picture of me" class="scrollable-element"/>
+            <h1 class="scrollable-element">Ryan</h1>
+            <h1 style="margin-top: -6.5vw; margin-left: 2.7vw" class="scrollable-element">Lechner</h1>
+            <div></div>
+            <p class="scrollable-element">Test text</p>
+            <p class="scrollable-element">Test text</p>
+            <p class="scrollable-element">Test text</p>
+            <p class="scrollable-element">Test text</p>
+            <p class="scrollable-element">Test text</p>
+            <p class="scrollable-element">Test text</p>
+            <p class="scrollable-element">Test text</p>
+            <p class="scrollable-element">Test text</p>
+            <p class="scrollable-element">Test text</p>
+            <p class="scrollable-element">Test text</p>
+            <p class="scrollable-element">Test text</p>
         </div>
         `
     )
 }
-
-function transitionToAboutScreen() {
-    setTimeout(() => {
-        console.log("Transitioning to about screen");
-        const container = document.getElementById("main-container");
-        container.style.transition = "ease-in-out 1.3s";
-        container.style.opacity = "1";
-        container.style.transform = "translateY(0vh)";
-        setTimeout(() => {
-            state = "about";
-        }, 1300);
-    }, 100);
-}
-
-function transitionOffAboutScreen() {
-    console.log("Transitioning off home screen");
-    const container = document.getElementById("main-container");
-    container.style.transition = "ease-in-out 1.5s";
-    container.style.opacity = "0";
-    container.style.transform = "translateY(15vh)";
-}
-
-
 
 // Returns projects screen elements
 //
@@ -531,31 +574,132 @@ function projectsScreen() {
     return (
         `
         <div class="center-div" id="main-container">
-            <p>Projects</p>
+            <h1 class="scrollable-element">Projects</h1>
         </div>
         `
     )
 }
 
+
+
+//! Begin transition functions
+
+// Fades in home screen, enabled buttons once done
+//
+function transitionToHomeScreen() {
+    setTimeout(() => {
+        console.log("Transitioning to home screen");
+        const container = document.getElementById("main-container");
+        scrollableElements = document.querySelectorAll(".scrollable-element");
+        handleScroll();
+        runParticleSim(numParticles);
+        container.style.transition = `ease-in-out 0.${transitionSpeed / 100}s`;
+        container.style.opacity = "1";
+        container.style.transform = "translateY(0vh)";
+        setTimeout(() => {
+            container.style.transition = "ease 0.3s";
+            state = "simulating";
+        }, transitionSpeed + 10);
+    }, 100);
+}
+
+// Fades out home screen, disables buttons
+//
+function transitionOffHomeScreen() {
+    console.log("Transitioning off home screen");
+    const container = document.getElementById("main-container");
+    container.style.transition = `ease-in-out 0.${transitionSpeed / 100}s 1.${(21 - (transitionSpeed / 100)) % 10}s`;
+    container.style.opacity = "0";
+    container.style.transform = "translateY(5vh)";
+    setTimeout(() => {
+        homeTransitionDone = true;
+    }, 2100);
+}
+
+// Fades in about screen, enables buttons once done
+//
+function transitionToAboutScreen() {
+    setTimeout(() => {
+        console.log("Transitioning to about screen");
+        const container = document.getElementById("main-container");
+        scrollableElements = document.querySelectorAll(".scrollable-element");
+        handleScroll();
+        container.style.transition = `ease-in-out 0.${transitionSpeed / 100}s`;
+        container.style.opacity = "1";
+        container.style.transform = "translateY(0vh)";
+        setTimeout(() => {
+            container.style.transition = "ease 0.3s";
+            state = "about";
+        }, transitionSpeed + 10);
+    }, 100);
+}
+
+// Fades out about screen, disables buttons
+//
+function transitionOffAboutScreen() {
+    console.log("Transitioning off home screen");
+    const container = document.getElementById("main-container");
+    container.style.transition = `ease-in-out 0.${transitionSpeed / 100}s`;
+    container.style.opacity = "0";
+    container.style.transform = "translateY(5vh)";
+}
+
+// Fades in projects screen, enables buttons once done
+//
 function transitionToProjectsScreen() {
     setTimeout(() => {
         console.log("Transitioning to projects screen");
         const container = document.getElementById("main-container");
-        container.style.transition = "ease-in-out 1.3s";
+        scrollableElements = document.querySelectorAll(".scrollable-element");
+        handleScroll();
+        container.style.transition = `ease-in-out 0.${transitionSpeed / 100}s`;
         container.style.opacity = "1";
         container.style.transform = "translateY(0vh)";
         setTimeout(() => {
+            container.style.transition = "ease 0.3s";
             state = "projects";
-        }, 1300);
+        }, transitionSpeed + 10);
     }, 100);
 }
 
+// Fades out projects screen, disables buttons
+//
 function transitionOffProjectsScreen() {
     console.log("Transitioning off projects screen");
     const container = document.getElementById("main-container");
-    container.style.transition = "ease-in-out 1.5s";
+    container.style.transition = `ease-in-out 0.${transitionSpeed / 100}s`;
     container.style.opacity = "0";
-    container.style.transform = "translateY(15vh)";
+    container.style.transform = "translateY(5vh)";
+}
+
+// Fades scrollable elements appropriately
+//
+function handleScroll() {
+    for (var i = 0; i < scrollableElements.length; i++) {
+        var element = scrollableElements[i];
+        var elementRect = element.getBoundingClientRect();
+        var percentFromBottom = Math.max(window.innerHeight - elementRect.top, 0)/window.innerHeight;
+        var percentFromTop = Math.max(elementRect.bottom, 0)/window.innerHeight;
+        //console.log(percentFromBottom);
+        if (element.classList.length > 1) {
+            element.classList.remove(element.classList[1]);
+        }
+
+        if (percentFromBottom < .05 || percentFromTop < .15) {
+            element.classList.add("opacity-0");
+        } else if (percentFromBottom < .10 || percentFromTop < .25) {
+            element.classList.add("opacity-10");
+        } else if (percentFromBottom < .27 || percentFromTop < .32) {
+            element.classList.add("opacity-25");
+        } else if (percentFromBottom < .35 || percentFromTop < .37) {
+            element.classList.add("opacity-50");
+        } else if (percentFromBottom < .45 || percentFromTop < .5) {
+            element.classList.add("opacity-75");
+        } else {
+            element.classList.add("opacity-100");
+        }
+    }
+    //console.log(scrollableElements);
 }
 
 
