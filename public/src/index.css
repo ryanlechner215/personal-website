@@ -184,17 +184,17 @@ html {
 @font-face {
     font-family: 'Inter';
     font-weight: normal;
-    src: url(./../public/fonts/Inter-Regular.ttf);
+    src: url(./../fonts/Inter-Regular.ttf);
 }
   
 @font-face {
     font-family: 'Inter';
     font-weight: bold;
-    src: url(./../public/fonts/Inter-Bold.ttf);
+    src: url(./../fonts/Inter-Bold.ttf);
 }
   
 @font-face {
     font-family: 'Inter';
     font-weight: light;
-    src: url(./../public/fonts/Inter-Light.ttf);
+    src: url(./../fonts/Inter-Light.ttf);
 }

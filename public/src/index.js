@@ -552,7 +552,7 @@ function aboutScreen() {
     return (
         `
         <div class="center-div" id="main-container">
-            <img src="./../public/images/prof_pic.JPG" alt="picture of me" class="scrollable-element"/>
+            <img src="./../images/prof_pic.JPG" alt="picture of me" class="scrollable-element"/>
             <h1 class="scrollable-element">Ryan</h1>
             <h1 style="margin-top: -6.5vw; margin-left: 2.7vw" class="scrollable-element">Lechner</h1>
             <div></div>
