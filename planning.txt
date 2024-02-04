@@ -1,0 +1,22 @@
+Top priority
+---------------------------------------------------------------------------
+-Add landing page mission statement
+-Add projects page
+-Add about me page
+-Add links dropdown/modal
+-Add contact info somewhere
+---------------------------------------------------------------------------
+-Add mouse interaction with particles (on click/right click drag)
+-Implement Delauney triangulation
+-Make responsive
+---------------------------------------------------------------------------
+-Make 2d array data structure for particles
+---------------------------------------------------------------------------
+-Add transition off main page
+-Tweak equations/constants to make simulation smoother
+
+
+Not in priority list
+---------------------------------------------------------------------------
+-Make landing page scrollable with more content
+-Make header a smoother dropdown (maybe based off mouse distance to it?)

@@ -7,11 +7,13 @@
 // Parameters
 const gravStrength = 1;
 const numParticles = 300;
-const dampeningFactor = 0.8;
-const particleDampening = 2;
-const repelDist = 300;
+const dampeningFactor = 0.5;
+const particleMass = 2.5;
+const repelDist = 570;
 const minDist = 0.01;
 const particleRadius = 7;
+const boundStrength = 200;
+const despawnDist = 50;
 
 
 // Program-only variables
@@ -24,6 +26,8 @@ var state = "loading";
 var width = 0;
 var height = 0;
 var animFrameId = -1;
+var numDespawned = 0;
+var homeTransitionDone = false;
 
 
 
@@ -47,6 +51,7 @@ function handleResize() {
         width = canvas.width;
         height = canvas.height;
         context.strokeStyle = "rgba(171, 242, 255, 0.868)";
+        context.globalCompositeOperation = "lighter";
     }
 };
 handleResize();
@@ -124,17 +129,19 @@ class Vec2d {
 
 //! More global variables
 var gravVec = new Vec2d(0, 0.1).divBy(1 / gravStrength);
-var leftBoundVec = new Vec2d(1, 0);
-var rightBoundVec = new Vec2d(-1, 0);
-var bottomBoundVec = new Vec2d(0, -1);
+var leftBoundVec = new Vec2d(boundStrength, 0);
+var rightBoundVec = new Vec2d(-boundStrength, 0);
+var bottomBoundVec = new Vec2d(0, -boundStrength);
 
 
 // Particles initialize to a random spot on screen
 //
 class Particle {
     constructor() {
-        this.pos = new Pt3d(randomInt(1, width - 1), randomInt(0, height), 1);
+        this.pos = new Pt3d(randomInt(1, width - 1), randomInt(-3*height, -2*height), 1);
         this.vel = new Vec2d(0, 0);
+        this.despawned = false;
+
         this.closest = null;
         this.closestDist = width*2;
         this.vecToClosest = null;
@@ -146,12 +153,24 @@ class Particle {
         this.vecToClosest3 = null;
     }
 
+    repel(dist, vec) {
+        this.vel.add(vec.divBy(Math.max(particleMass*Math.pow(dist, 2), minDist)));
+    }
+
+    despawn() {
+        if (!this.despawned) {
+            this.despawned = true;
+            numDespawned++;
+        }
+    }
+
     update() {
+        if (this.pos.y > height + despawnDist) return this.despawn();
         this.closest = null;
         this.vecToClosest = null;
         this.closestDist = width*2;
         particles.forEach((particle) => {
-            if ( this != particle ) {
+            if ( this != particle && !particle.despawned ) {
                 const distToParticle = particle.pos.eucDist(this.pos);
                 const vecFromParticle = particle.pos.vecTo(this.pos);
                 if (distToParticle < this.closestDist) {
@@ -181,7 +200,7 @@ class Particle {
                 }
 
                 if (distToParticle < repelDist) {
-                    this.vel.add(vecFromParticle.divBy(Math.max(particleDampening*Math.pow(distToParticle, 2), minDist)));
+                    this.repel(distToParticle, vecFromParticle);
                 }
             }
         })
@@ -192,30 +211,77 @@ class Particle {
     }
 
     checkBounds() {
-        if (this.pos.y > height - 1) {
-            this.pos.y = height - 1;
-            this.vel.y = -dampeningFactor*this.vel.y;
+        if (this.pos.y > height - repelDist && state == "simulating") {
+            if (this.pos.y > height - particleRadius) {
+                this.pos.y = height - particleRadius;
+                //console.log("fixing");
+                //this.vel.y = -dampeningFactor*this.vel.y;
+            }
+            this.repel(Math.max(height-this.pos.y, minDist), bottomBoundVec);
         }
-        if (this.pos.x < 1) {
-            this.pos.x = 1;
-            this.vel.x = -dampeningFactor*this.vel.x;
-        } else if (this.pos.x > width - 1) {
-            this.pos.x = width - 1;
-            this.vel.x = -dampeningFactor*this.vel.x;
+
+
+        if (this.pos.x < repelDist) {
+            if (this.pos.x < particleRadius) {
+                this.pos.x = particleRadius;
+                this.vel.x = -dampeningFactor*this.vel.x;
+            }
+            this.repel(this.pos.x, leftBoundVec);
+        } else if (this.pos.x > width - repelDist) {
+            if (this.pos.x > width - particleRadius) {
+                this.pos.x = width - particleRadius;
+                this.vel.x = -dampeningFactor*this.vel.x;
+            }
+            this.repel(width - this.pos.x, rightBoundVec);
         }
     }
 
     render(context) {
+        if (this.despawned) return;
+
         this.update();
+        context.strokeStyle = "rgba(171, 242, 255, 1)";
+        context.beginPath();
         context.moveTo(this.pos.x + particleRadius, this.pos.y);
         context.arc(this.pos.x, this.pos.y, particleRadius, Math.PI * 2, false);
-        context.moveTo(this.pos.x + this.vecToClosest.x, this.pos.y + this.vecToClosest.y);
-        context.lineTo(this.closest.pos.x - this.vecToClosest.x, this.closest.pos.y - this.vecToClosest.y);
-        context.moveTo(this.pos.x + this.vecToClosest2.x, this.pos.y + this.vecToClosest2.y);
-        context.lineTo(this.closest2.pos.x - this.vecToClosest2.x, this.closest2.pos.y - this.vecToClosest2.y);
-        context.moveTo(this.pos.x + this.vecToClosest3.x, this.pos.y + this.vecToClosest3.y);
-        context.lineTo(this.closest3.pos.x - this.vecToClosest3.x, this.closest3.pos.y - this.vecToClosest3.y);
+        context.stroke();
+
+        context.strokeStyle = "rgba(171, 242, 255, 0.2)";
+        context.beginPath();
+
+        if (this.closest != null) {
+            context.moveTo(this.pos.x + this.vecToClosest.x, this.pos.y + this.vecToClosest.y);
+            context.lineTo(this.closest.pos.x - this.vecToClosest.x, this.closest.pos.y - this.vecToClosest.y);
+        }
+        if (this.closest2 != null) {
+            context.moveTo(this.pos.x + this.vecToClosest2.x, this.pos.y + this.vecToClosest2.y);
+            context.lineTo(this.closest2.pos.x - this.vecToClosest2.x, this.closest2.pos.y - this.vecToClosest2.y);
+        }
+        if (this.closest3 != null) {
+            context.moveTo(this.pos.x + this.vecToClosest3.x, this.pos.y + this.vecToClosest3.y);
+            context.lineTo(this.closest3.pos.x - this.vecToClosest3.x, this.closest3.pos.y - this.vecToClosest3.y);
+        }
+        context.stroke();
     }
+}
+
+
+function despawnParticles(endFunc) {
+    //console.log("Waiting for full despawn...");
+    //console.log(numDespawned);
+    //console.log(numParticles);
+
+    state = "despawning";
+    if (numDespawned == numParticles && homeTransitionDone) {
+        homeTransitionDone = false;
+        window.cancelAnimationFrame(animFrameId);
+        animFrameId = -1;
+        particles = [];
+        numDespawned = 0;
+        endFunc();
+    } else {
+        setTimeout(() => {despawnParticles(endFunc)}, 200)
+    };
 }
 
 
@@ -233,27 +299,69 @@ function displayContent() {
     // Checks URL against target URLs
     if (window.location.href == baseUrl) {
         //console.log("Home screen");
-        content.innerHTML = homeScreen();
-        console.log(content.innerHTML);
-        runParticleSim(numParticles);
-        return;
+        if (state == "about") {
+            state = "transitioning";
+            transitionOffAboutScreen();
+            setTimeout(() => {
+                content.innerHTML = homeScreen();
+                transitionToHomeScreen();
+            }, 1300);
+        } else if (state == "projects") {
+            state = "transitioning";
+            transitionOffProjectsScreen();
+            setTimeout(() => {
+                content.innerHTML = homeScreen();
+                transitionToHomeScreen();
+            }, 1300);
+        } else {
+            state = "transitioning";
+            content.innerHTML = homeScreen();
+            transitionToHomeScreen();
+        }
     } else if (window.location.href == baseUrl + "about") {
         //console.log("About screen");
-        if (animFrameId != -1) {
-            window.cancelAnimationFrame(animFrameId);
-            animFrameId = -1;
+        if (state == "simulating") {
+            state = "transitioning";
+            transitionOffHomeScreen();
+            despawnParticles(function() {
+                state = "transitioning";
+                content.innerHTML = aboutScreen();
+                transitionToAboutScreen();
+            });
+        }else if (state == "projects") {
+            state = "transitioning";
+            transitionOffProjectsScreen();
+            setTimeout(() => {
+                content.innerHTML = aboutScreen();
+                transitionToAboutScreen();
+            }, 1300);
+        } else {
+            state = "transitioning";
+            content.innerHTML = aboutScreen();
+            transitionToAboutScreen();
         }
-        content.innerHTML = aboutScreen();
-        return;
     } else if (window.location.href == baseUrl + "projects") {
         //console.log("Projects screen");
-        if (animFrameId != -1) {
-            window.cancelAnimationFrame(animFrameId);
-            animFrameId = -1;
+        if (state == "simulating") {
+            state = "transitioning";
+            transitionOffHomeScreen();
+            despawnParticles(function() {
+                state = "transitioning";
+                content.innerHTML = projectsScreen();
+                transitionToProjectsScreen();
+            });
+        } else if (state == "about") {
+            state = "transitioning";
+            transitionOffAboutScreen();
+            setTimeout(() => {
+                content.innerHTML = projectsScreen();
+                transitionToProjectsScreen();
+            }, 1300);
+        } else {
+            state = "transitioning";
+            content.innerHTML = projectsScreen();
+            transitionToProjectsScreen();
         }
-        content.innerHTML = projectsScreen();
-        return;
-
     }
 }
 
@@ -303,16 +411,26 @@ function displayHeader() {
     var homeButton = document.getElementById("home-button");
     var projectsButton = document.getElementById("projects-button");
     var aboutButton = document.getElementById("about-button");
+    var linksButton = document.getElementById("links-button");
 
     // Adds functionality to buttons
     homeButton.onclick = function() {
-        navigate("");
+        if (state != "transitioning" && state != "despawning") {
+            navigate("");
+        }
     };
     aboutButton.onclick = function() {
-        navigate("about");
+        if (state != "transitioning" && state != "despawning") {
+            navigate("about");
+        }
     };
     projectsButton.onclick = function() {
-        navigate("projects");
+        if (state != "transitioning" && state != "despawning") {
+            navigate("projects");
+        }
+    };
+    linksButton.onclick = function() {
+        dropDownLinks();
     };
 
     // Disables right-clicks for buttons
@@ -325,6 +443,9 @@ function displayHeader() {
     projectsButton.addEventListener("contextmenu", (e) => {
         e.preventDefault();
     });
+    linksButton.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+    });
 }
 
 // Returns home screen elements
@@ -332,20 +453,47 @@ function displayHeader() {
 function homeScreen() {
     return (
         `
-        <canvas id="particle-sim"></canvas>
-        <div class='center-div'>
+        <canvas id="particle-sim" class="particle-sim"></canvas>
+        <div class="center-div" id="main-container">
             <p>Welcome</p>
         </div>
         `
     )
 }
 
+function transitionToHomeScreen() {
+    setTimeout(() => {
+        console.log("Transitioning to home screen");
+        const container = document.getElementById("main-container");
+        runParticleSim(numParticles);
+        container.style.transition = "ease-in-out 1.3s";
+        container.style.opacity = "1";
+        container.style.transform = "translateY(0vh)";
+        setTimeout(() => {
+            state = "simulating";
+        }, 1300);
+    }, 300);
+}
+
+function transitionOffHomeScreen() {
+    console.log("Transitioning off home screen");
+    const container = document.getElementById("main-container");
+    container.style.transition = "ease-in-out 1.5s 0.6s";
+    container.style.opacity = "0";
+    container.style.transform = "translateY(15vh)";
+    setTimeout(() => {
+        homeTransitionDone = true;
+    }, 2100);
+}
+
+
+
 // Returns about screen elements
 //
 function aboutScreen() {
     return (
         `
-        <div class='center-div'>
+        <div class="center-div" id="main-container">
             <img src="./../public/images/prof_pic.JPG" alt="picture of me" />
             <p>Ryan</p>
             <p style="margin-top: 12vw; margin-left: 2.7vw">Lechner</p>
@@ -354,16 +502,60 @@ function aboutScreen() {
     )
 }
 
+function transitionToAboutScreen() {
+    setTimeout(() => {
+        console.log("Transitioning to about screen");
+        const container = document.getElementById("main-container");
+        container.style.transition = "ease-in-out 1.3s";
+        container.style.opacity = "1";
+        container.style.transform = "translateY(0vh)";
+        setTimeout(() => {
+            state = "about";
+        }, 1300);
+    }, 100);
+}
+
+function transitionOffAboutScreen() {
+    console.log("Transitioning off home screen");
+    const container = document.getElementById("main-container");
+    container.style.transition = "ease-in-out 1.5s";
+    container.style.opacity = "0";
+    container.style.transform = "translateY(15vh)";
+}
+
+
+
 // Returns projects screen elements
 //
 function projectsScreen() {
     return (
         `
-        <div class='center-div'>
+        <div class="center-div" id="main-container">
             <p>Projects</p>
         </div>
         `
     )
+}
+
+function transitionToProjectsScreen() {
+    setTimeout(() => {
+        console.log("Transitioning to projects screen");
+        const container = document.getElementById("main-container");
+        container.style.transition = "ease-in-out 1.3s";
+        container.style.opacity = "1";
+        container.style.transform = "translateY(0vh)";
+        setTimeout(() => {
+            state = "projects";
+        }, 1300);
+    }, 100);
+}
+
+function transitionOffProjectsScreen() {
+    console.log("Transitioning off projects screen");
+    const container = document.getElementById("main-container");
+    container.style.transition = "ease-in-out 1.5s";
+    container.style.opacity = "0";
+    container.style.transform = "translateY(15vh)";
 }
 
 
@@ -378,6 +570,7 @@ function runParticleSim( numParticles ) {
     handleResize();
     context.strokeStyle = "rgba(171, 242, 255, 0.868)";
     context.fillStyle = "rgba(185, 247, 255, 0)";
+    context.save();
 
     particles = [];
     for (var i = 0; i < numParticles; i++) {
@@ -390,14 +583,13 @@ function renderParticles() {
     //console.log(particles);
     animFrameId = requestAnimationFrame(renderParticles);
 
-    context.beginPath();
+    context.clearRect(0, 0, width, height);
+
     particles.forEach((particle) => {
         particle.update();
         particle.render(context);
     })
 
-    context.clearRect(0, 0, width, height);
-    context.stroke();
     
 }
 

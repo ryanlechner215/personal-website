@@ -1,7 +1,7 @@
 html, body {
     overflow: hidden;
     margin: 0;
-    background: radial-gradient(circle at 100% 70%, #4680ff 0%, #3bbadd 100%);
+    background: radial-gradient(circle at 100% 90%, #2e6aeb 0%, #3bbadd 100%);
     height: 100%;
     width: 100%;
     font-family: Inter, sans-serif, Arial;
@@ -12,23 +12,25 @@ html, body {
 .header {
     position: absolute;
     left: 0;
-    top: 2vh;
+    top: 0;
     width: 100vw;
-    height: 15vh;
+    height: 20vh;
+    z-index: 1;
+    transition: transform ease-out 0.2s, height ease-out 0.2s;
 }
 .header>div {
     display: flex;
     justify-content: space-around;
-    transition: height ease-in-out 0.2s;
     align-items: center;
 }
 .header:hover {
-    height: 17vh;
+    height: 25vh;
 }
 .header:hover>*>button {
     height: 8vh;
 }
 .header>*>button {
+    margin-top: 6vh;
     border-color: rgb(255, 255, 255);
     background-color: rgba(185, 247, 255, 0.354);
     border-radius: 1.3vw;
@@ -49,6 +51,7 @@ html, body {
     transform: scaleY(105%);
 }
 .header-line {
+    margin-top: 6vh;
     z-index: 0;
     transition: transform ease-out 0.2s;
     flex: 1;
@@ -56,7 +59,14 @@ html, body {
     border-top: 2px dashed rgba(0, 0, 0, 0.702);
 }
 
-
+.particle-sim {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    width: 100vw;
+    z-index: 0;
+}
 
 
 .center-div {
@@ -66,11 +76,14 @@ html, body {
     width: 70vw;
     height: 40vw;
     z-index: 3;
+    opacity: 0;
+    transform: translateY(15vh);
 }
 .center-div>p {
     position: absolute;
     font-size: 6.5vw;
     font-weight: bold;
+    pointer-events: none;
 }
 .center-div>img {
     position: absolute;
