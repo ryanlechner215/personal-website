@@ -552,7 +552,7 @@ function aboutScreen() {
     return (
         `
         <div class="center-div" id="main-container">
-            <img src="./../images/prof_pic.JPG" alt="picture of me" class="scrollable-element"/>
+            <img src="./images/prof_pic.JPG" alt="picture of me" class="scrollable-element"/>
             <h1 class="scrollable-element">Ryan</h1>
             <h1 style="margin-top: -6.5vw; margin-left: 2.7vw" class="scrollable-element">Lechner</h1>
             <div></div>
@@ -566,8 +566,7 @@ function aboutScreen() {
             <h2 class="scrollable-element">Who I am</h2>
             <p class="scrollable-element">Before getting into the nitty-gritty, 
                 I'll touch on who I am. <u>I thrive under pressure</u>. I love it. 
-                Whenever I am presented with a challenging problem, I get excited 
-                because, the more challenging a problem, the more I <i>learn!</i></p>
+                It always means there's more to <i>learn!</i></p>
             <p class="scrollable-element">I like <b>optimizing and polishing</b> anything that 
                 I have the time for, I learn extremely quickly, and, while it's 
                 not my first choice, I am a very capable leader. I have a <i>ton</i> 
@@ -635,8 +634,10 @@ function aboutScreen() {
                 and writing my dream novel. I'm working on two startup projects, 
                 and I will be writing coding blogs for problems that I've 
                 struggled with and had to overcome.</p>
-            <p class="scrollable-element">By no means do I expect anyone to have read 
-                all of that, but, with that all out of the way, I bid you adieu!</p>
+            <p class="scrollable-element">Now, at the end of what has essentially 
+                become an essay, I bid you adieu!</p>
+            <div></div>
+            <div></div>
             <div></div>
             <div></div>
             <div></div>
@@ -781,7 +782,7 @@ function handleScroll() {
             element.classList.add("opacity-25");
         } else if (percentFromBottom < .35 || percentFromTop < .37) {
             element.classList.add("opacity-50");
-        } else if (percentFromBottom < .45 || percentFromTop < .5) {
+        } else if (percentFromBottom < .45 || percentFromTop < .4) {
             element.classList.add("opacity-75");
         } else {
             element.classList.add("opacity-100");

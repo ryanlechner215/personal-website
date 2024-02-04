@@ -1,20 +1,22 @@
 Top priority
 ---------------------------------------------------------------------------
--Add projects page
--Add links dropdown/modal
+-add projects page
+-add links dropdown/modal
 
--Add pictures to about page
+-add pictures to about page
 
--Add glimpes of projects
+-add glimpes of projects
     `->(picture, on hover plays a short video)
 ---------------------------------------------------------------------------
--Implement Delauney triangulation
--Ensure responsiveness
+-implement Delauney triangulation
+-ensure responsiveness
 ---------------------------------------------------------------------------
--Make 2d array data structure for particles
+-make 2d array data structure for particles
+-make nice scrollbar
 
 
 Not in priority list
 ---------------------------------------------------------------------------
--Make header a smoother dropdown (maybe based off mouse distance to it?)
--Add mobile compatibility
+-make header a smoother dropdown (maybe based off mouse distance to it?)
+-add mobile compatibility
+-smooth scrolling
