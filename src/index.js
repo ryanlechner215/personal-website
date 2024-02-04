@@ -15,7 +15,7 @@ const particleRadius = 7;
 const boundStrength = 200;
 const despawnDist = 50;
 const transitionSpeed = 800;
-const mouseAttractStrength = 20;
+const mouseAttractStrength = 50;
 const mouseRepelStrength = 20;
 
 
@@ -40,6 +40,7 @@ var mouse = {
     middle: false,
     right: false
 };
+var numClasses = 1;
 
 
 
@@ -66,6 +67,7 @@ function handleResize() {
         context.strokeStyle = "rgba(171, 242, 255, 0.868)";
         context.globalCompositeOperation = "lighter";
     }
+    handleScroll();
 };
 handleResize();
 
@@ -352,6 +354,7 @@ function displayContent() {
     // Checks URL against target URLs
     if (window.location.href == baseUrl) {
         //console.log("Home screen");
+        numClasses = 2;
         if (state == "about") {
             state = "transitioning";
             transitionOffAboutScreen();
@@ -372,6 +375,7 @@ function displayContent() {
             transitionToHomeScreen();
         }
     } else if (window.location.href == baseUrl + "about") {
+        numClasses = 1;
         //console.log("About screen");
         if (state == "simulating") {
             state = "transitioning";
@@ -394,6 +398,7 @@ function displayContent() {
             transitionToAboutScreen();
         }
     } else if (window.location.href == baseUrl + "projects") {
+        numClasses = 1;
         //console.log("Projects screen");
         if (state == "simulating") {
             state = "transitioning";
@@ -486,19 +491,18 @@ function displayHeader() {
         dropDownLinks();
     };
 
-    // Disables right-click context menus
-    window.addEventListener("contextmenu", (e) => {
+    homeButton.addEventListener("contextmenu", (e) => {
         e.preventDefault();
     });
-    // aboutButton.addEventListener("contextmenu", (e) => {
-    //     e.preventDefault();
-    // });
-    // projectsButton.addEventListener("contextmenu", (e) => {
-    //     e.preventDefault();
-    // });
-    // linksButton.addEventListener("contextmenu", (e) => {
-    //     e.preventDefault();
-    // });
+    aboutButton.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+    });
+    projectsButton.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+    });
+    linksButton.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+    });
 }
 
 //! Begin DOM component functions
@@ -513,23 +517,23 @@ function homeScreen() {
             <div></div>
             <div></div>
             <div></div>
-            <h1 class="scrollable-element">Welcome</h1>
-            <p class="scrollable-element">My name is Ryan Lechner, and I'm
-            a graphics-focused software developer. I'm currently looking for work 
-            in project-based roles. For more details on my experience and specialties, 
-            head on over to the about page</p>
+            <h1 class="scrollable-element blur">Welcome</h1>
+            <p class="scrollable-element blur"><b>My name is Ryan Lechner</b>, and <u>I'm
+                a graphics and AI-focused software developer</u>. I'm currently looking for work 
+                in project-based roles. For more details on my experience and specialties, 
+                head on over to the about page.</p>
             <div></div>
-            <p class="scrollable-element">If you want to play around with
-            the particles on this page, click and drag your mouse around</p>
-            <p class="scrollable-element">Left-click will attract nearby
-            particles, and right-click will repel them</p>
+            <p class="scrollable-element blur">If you want to play around with
+                the particles on this page, click and drag your mouse around.</p>
+            <p class="scrollable-element blur"><b>Left-click will attract</b> nearby
+                particles, and <b>right-click will repel</b> them.</p>
             <div></div>
-            <p class="scrollable-element">I will be keeping this webpage
-            up-to-date with new projects and current ventures</p>
+            <p class="scrollable-element blur">I will be keeping this webpage
+                up-to-date with new projects and current ventures.</p>
             <div></div>
-            <p class="scrollable-element">Feel free to contact me on my 
-            LinkedIn, which can be found in the Links dropdown menu</p>
-            <p class="scrollable-element">Have a pleasure exploring!</p>
+            <p class="scrollable-element blur">Feel free to contact me on my 
+                LinkedIn, which can be found in the Links dropdown menu.</p>
+            <p class="scrollable-element blur">Have a pleasure exploring!</p>
             <div></div>
             <div></div>
             <div></div>
@@ -552,17 +556,92 @@ function aboutScreen() {
             <h1 class="scrollable-element">Ryan</h1>
             <h1 style="margin-top: -6.5vw; margin-left: 2.7vw" class="scrollable-element">Lechner</h1>
             <div></div>
-            <p class="scrollable-element">Test text</p>
-            <p class="scrollable-element">Test text</p>
-            <p class="scrollable-element">Test text</p>
-            <p class="scrollable-element">Test text</p>
-            <p class="scrollable-element">Test text</p>
-            <p class="scrollable-element">Test text</p>
-            <p class="scrollable-element">Test text</p>
-            <p class="scrollable-element">Test text</p>
-            <p class="scrollable-element">Test text</p>
-            <p class="scrollable-element">Test text</p>
-            <p class="scrollable-element">Test text</p>
+            <h3 class="scrollable-element">Hi there!</h3>
+            <p class="scrollable-element">As is written on the main page, 
+                I'm a <u>software developer</u>. I'm currently in my final year at 
+                Purdue University, and I will be graduating this May with a major 
+                in <b>computer science</b> and a minor in English. I'm 
+                looking for employment at an <u>intermediate to advanced</u> level.</p>
+            <div></div>
+            <h2 class="scrollable-element">Who I am</h2>
+            <p class="scrollable-element">Before getting into the nitty-gritty, 
+                I'll touch on who I am. <u>I thrive under pressure</u>. I love it. 
+                Whenever I am presented with a challenging problem, I get excited 
+                because, the more challenging a problem, the more I <i>learn!</i></p>
+            <p class="scrollable-element">I like <b>optimizing and polishing</b> anything that 
+                I have the time for, I learn extremely quickly, and, while it's 
+                not my first choice, I am a very capable leader. I have a <i>ton</i> 
+                of hobbies and interests, but I'll get more into those at the 
+                bottom of this page.</p>
+            <div></div>
+            <h2 class="scrollable-element">Club president</h2>
+            <p class="scrollable-element">I've also been lucky enough to be 
+                the <u>president of the roundet (Spikeball) club</u> here at Purdue!</p>
+            <p class="scrollable-element">During my presidency, 
+                <b>we've grown from 300 to over 800</b> members. We've hosted 
+                5 tournaments and ran 3 other events while I have been on the 
+                executive team. I also compete around the mid-west, which 
+                has been an amazing travel opportunity for me.</p>
+            <div></div>
+            <h2 class="scrollable-element">Fields of interest</h2>
+            <p class="scrollable-element">While I would like to focus on 
+                <u>graphics and AI</u>, I have a passion for most programming work, 
+                especially work requiring <i>in-depth, creative problem 
+                solving.</i></p>
+            <p class="scrollable-element">I've found that these two interests 
+                cross paths in game development, but that doesn't include the 
+                whole scope of the field. <b>Physics/game engine development</b> and 
+                <b>agent AI creation</b> are where I can apply myself best.</p>
+            <div></div>
+            <h2 class="scrollable-element">AI work</h2>
+            <p class="scrollable-element">I have done a lot of AI stuff. 
+                I've made <u>graph-search</u> models, <u>decision-tree</u> algorithms, 
+                <u>path-finding</u> agents, and <u>linear-optimization</u> algorithms.
+                I've dabbled in <u>classification</u> algorithms, and I've created 
+                one <u>neural network</u>.</p>
+            <p class="scrollable-element">I also made AIs for enemies in a 
+                couple games. An example, that I've linked below, is currently 
+                up and running (and is a rather fun, quick, arcade-style game). I've gone 
+                into more detail on the projects page, but <b>the snake boss</b> is the 
+                AI agent that I'm alluding to, and it spawns at 500 points.
+                <br><a href="https://main.d1rk2ynogd8lka.amplifyapp.com/">Chuckle Nuts</a></p>
+            <p class="scrollable-element">I'm in the process of making 
+                another neural net for an indie game that I'm helping with.
+                <br><a href="https://monstersofthesea.io">Monsters of the Sea</a></p>
+            <h2 class="scrollable-element">Graphics experience</h2>
+            <p class="scrollable-element">I've made the "engines" behind a couple  
+                indie games, and have created two technical graphics engines 
+                to explore the concepts behind more advanced rendering techniques, 
+                such as <u>parallax mapping</u>, <u>different shader mappings</u>, 
+                and <u>global illumination</u>.</p>
+            <p class="scrollable-element">I've done projects with <u>image processing</u>, 
+                <u>procedural terrain generation</u>, and <u>particle simulation</u> (can you tell 
+                that I like these ones?). The next project on my list 
+                is a fabric simulation. I don't yet know if I have the 
+                physics-expertise for it, but I want to learn, nonetheless</p>
+            <div></div>
+            <h2 class="scrollable-element">I mentioned hobbies...</h2>
+            <p class="scrollable-element">Ah-hem. I rock climb, write both poetry 
+                and prose, and play Spikeball, volleyball, tennis, and ping pong.</p>
+            <p class="scrollable-element">I enjoy home cooking, reading (philosophy, 
+                science-fiction, fantasy), video games, and anime. I haven't had 
+                much time for the last two in quite a while.</p>
+            <p class="scrollable-element">I also work out, take up small 
+                side hobbies (like Rubik's cubes and yo-yo'ing), and have a 
+                rather sizable collection of board games.</p>
+            <div></div>
+            <h2 class="scrollable-element">What to look forward to</h2>
+            <p class="scrollable-element">I am in the constant cycle of planning 
+                and writing my dream novel. I'm working on two startup projects, 
+                and I will be writing coding blogs for problems that I've 
+                struggled with and had to overcome.</p>
+            <p class="scrollable-element">By no means do I expect anyone to have read 
+                all of that, but, with that all out of the way, I bid you adieu!</p>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
         `
     )
@@ -584,12 +663,17 @@ function projectsScreen() {
 
 //! Begin transition functions
 
+function preventDefaultFunc(e) {
+    e.preventDefault();
+}
+
 // Fades in home screen, enabled buttons once done
 //
 function transitionToHomeScreen() {
     setTimeout(() => {
         console.log("Transitioning to home screen");
         const container = document.getElementById("main-container");
+        window.addEventListener("contextmenu", preventDefaultFunc);
         scrollableElements = document.querySelectorAll(".scrollable-element");
         handleScroll();
         runParticleSim(numParticles);
@@ -597,6 +681,7 @@ function transitionToHomeScreen() {
         container.style.opacity = "1";
         container.style.transform = "translateY(0vh)";
         setTimeout(() => {
+            handleScroll();
             container.style.transition = "ease 0.3s";
             state = "simulating";
         }, transitionSpeed + 10);
@@ -612,6 +697,7 @@ function transitionOffHomeScreen() {
     container.style.opacity = "0";
     container.style.transform = "translateY(5vh)";
     setTimeout(() => {
+        window.removeEventListener("contextmenu", preventDefaultFunc);
         homeTransitionDone = true;
     }, 2100);
 }
@@ -628,6 +714,7 @@ function transitionToAboutScreen() {
         container.style.opacity = "1";
         container.style.transform = "translateY(0vh)";
         setTimeout(() => {
+            handleScroll();
             container.style.transition = "ease 0.3s";
             state = "about";
         }, transitionSpeed + 10);
@@ -656,6 +743,7 @@ function transitionToProjectsScreen() {
         container.style.opacity = "1";
         container.style.transform = "translateY(0vh)";
         setTimeout(() => {
+            handleScroll();
             container.style.transition = "ease 0.3s";
             state = "projects";
         }, transitionSpeed + 10);
@@ -681,8 +769,8 @@ function handleScroll() {
         var percentFromBottom = Math.max(window.innerHeight - elementRect.top, 0)/window.innerHeight;
         var percentFromTop = Math.max(elementRect.bottom, 0)/window.innerHeight;
         //console.log(percentFromBottom);
-        if (element.classList.length > 1) {
-            element.classList.remove(element.classList[1]);
+        if (element.classList.length > numClasses) {
+            element.classList.remove(element.classList[numClasses]);
         }
 
         if (percentFromBottom < .05 || percentFromTop < .15) {

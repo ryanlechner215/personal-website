@@ -1,19 +1,20 @@
 Top priority
 ---------------------------------------------------------------------------
 -Add projects page
--Add about me page
 -Add links dropdown/modal
--Add contact info somewhere
+
+-Add pictures to about page
+
+-Add glimpes of projects
+    `->(picture, on hover plays a short video)
 ---------------------------------------------------------------------------
--Add mouse interaction with particles (on click/right click drag)
 -Implement Delauney triangulation
--Make responsive
+-Ensure responsiveness
 ---------------------------------------------------------------------------
 -Make 2d array data structure for particles
----------------------------------------------------------------------------
--Tweak equations/constants to make simulation smoother
 
 
 Not in priority list
 ---------------------------------------------------------------------------
 -Make header a smoother dropdown (maybe based off mouse distance to it?)
+-Add mobile compatibility
