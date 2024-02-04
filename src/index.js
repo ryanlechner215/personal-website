@@ -5,8 +5,13 @@
 //! Begin global variables
 
 // Parameters
-const gravStrength = 0.3;
-const numParticles = 500;
+const gravStrength = 1;
+const numParticles = 300;
+const dampeningFactor = 0.8;
+const particleDampening = 2;
+const repelDist = 300;
+const minDist = 0.01;
+const particleRadius = 7;
 
 
 // Program-only variables
@@ -18,6 +23,7 @@ var context = null;
 var state = "loading";
 var width = 0;
 var height = 0;
+var animFrameId = -1;
 
 
 
@@ -40,11 +46,7 @@ function handleResize() {
         canvas.height = window.innerHeight;
         width = canvas.width;
         height = canvas.height;
-    
-        //! Remove this for plagiarism purposes
-        // remove this and see weird gorgeous stuffs, the history of particles.
-        context.fillStyle = '#ffffff';
-        context.fillRect(0, 0, width, height);
+        context.strokeStyle = "rgba(171, 242, 255, 0.868)";
     }
 };
 handleResize();
@@ -109,6 +111,15 @@ class Vec2d {
     mulBy(num) {
         return new Vec2d(this.x*num, this.y*num);
     }
+
+    magnitude() {
+        return Math.sqrt(Math.pow(this.x, 2)+Math.pow(this.y, 2));
+    }
+
+    normalizedTo(num) {
+        const mag = this.magnitude();
+        return new Vec2d(num*this.x/mag, num*this.y/mag);
+    }
 }
 
 //! More global variables
@@ -122,14 +133,56 @@ var bottomBoundVec = new Vec2d(0, -1);
 //
 class Particle {
     constructor() {
-        this.pos = new Pt3d(randomInt(100, width - 100), randomInt(-height, -height * 1.5), 1);
+        this.pos = new Pt3d(randomInt(1, width - 1), randomInt(0, height), 1);
         this.vel = new Vec2d(0, 0);
+        this.closest = null;
+        this.closestDist = width*2;
+        this.vecToClosest = null;
+        this.closest2 = null;
+        this.closestDist2 = width*2;
+        this.vecToClosest2 = null;
+        this.closest3 = null;
+        this.closestDist3 = width*2;
+        this.vecToClosest3 = null;
     }
 
     update() {
+        this.closest = null;
+        this.vecToClosest = null;
+        this.closestDist = width*2;
         particles.forEach((particle) => {
             if ( this != particle ) {
-                this.vel.add(particle.pos.vecTo(this.pos).divBy(1 + 10*Math.pow(particle.pos.eucDist(this.pos), 2)));
+                const distToParticle = particle.pos.eucDist(this.pos);
+                const vecFromParticle = particle.pos.vecTo(this.pos);
+                if (distToParticle < this.closestDist) {
+                    this.closest3 = this.closest2;
+                    this.closestDist3 = this.closestDist2;
+                    this.vecToClosest3 = this.vecToClosest2;
+                    
+                    this.closest2 = this.closest;
+                    this.closestDist2 = this.closestDist;
+                    this.vecToClosest2 = this.vecToClosest;
+
+                    this.closest = particle;
+                    this.closestDist = distToParticle;
+                    this.vecToClosest = vecFromParticle.normalizedTo(-particleRadius);
+                } else if (distToParticle < this.closestDist2) {
+                    this.closest3 = this.closest2;
+                    this.closestDist3 = this.closestDist2;
+                    this.vecToClosest3 = this.vecToClosest2;
+
+                    this.closest2 = particle;
+                    this.closestDist2 = distToParticle;
+                    this.vecToClosest2 = vecFromParticle.normalizedTo(-particleRadius);
+                } else if (distToParticle < this.closestDist3) {
+                    this.closest3 = particle;
+                    this.closestDist3 = distToParticle;
+                    this.vecToClosest3 = vecFromParticle.normalizedTo(-particleRadius);
+                }
+
+                if (distToParticle < repelDist) {
+                    this.vel.add(vecFromParticle.divBy(Math.max(particleDampening*Math.pow(distToParticle, 2), minDist)));
+                }
             }
         })
         this.vel.add(gravVec);
@@ -139,20 +192,29 @@ class Particle {
     }
 
     checkBounds() {
-        if ( state != "despawn particles" && this.pos.y > height - 50 ) {
-            this.vel.add(bottomBoundVec.divBy(1 + 4*Math.max(height - this.pos.y, 0.001) / 20));
+        if (this.pos.y > height - 1) {
+            this.pos.y = height - 1;
+            this.vel.y = -dampeningFactor*this.vel.y;
         }
-        if (this.pos.x < 50) {
-            this.vel.add(leftBoundVec.divBy(1 + 4*Math.pow(Math.max(this.pos.x, 0.001) / 50, 2)));
-        } else if (this.pos.x > width - 50) {
-            this.vel.add(rightBoundVec.divBy(1 + 4*Math.pow(Math.max(this.pos.x - width, 0.001) / 50, 2)));
+        if (this.pos.x < 1) {
+            this.pos.x = 1;
+            this.vel.x = -dampeningFactor*this.vel.x;
+        } else if (this.pos.x > width - 1) {
+            this.pos.x = width - 1;
+            this.vel.x = -dampeningFactor*this.vel.x;
         }
     }
 
     render(context) {
         this.update();
-        context.moveTo(this.pos.x, this.pos.y);
-        context.arc(this.pos.x, this.pos.y, 3, Math.PI * 2, false);
+        context.moveTo(this.pos.x + particleRadius, this.pos.y);
+        context.arc(this.pos.x, this.pos.y, particleRadius, Math.PI * 2, false);
+        context.moveTo(this.pos.x + this.vecToClosest.x, this.pos.y + this.vecToClosest.y);
+        context.lineTo(this.closest.pos.x - this.vecToClosest.x, this.closest.pos.y - this.vecToClosest.y);
+        context.moveTo(this.pos.x + this.vecToClosest2.x, this.pos.y + this.vecToClosest2.y);
+        context.lineTo(this.closest2.pos.x - this.vecToClosest2.x, this.closest2.pos.y - this.vecToClosest2.y);
+        context.moveTo(this.pos.x + this.vecToClosest3.x, this.pos.y + this.vecToClosest3.y);
+        context.lineTo(this.closest3.pos.x - this.vecToClosest3.x, this.closest3.pos.y - this.vecToClosest3.y);
     }
 }
 
@@ -177,10 +239,18 @@ function displayContent() {
         return;
     } else if (window.location.href == baseUrl + "about") {
         //console.log("About screen");
+        if (animFrameId != -1) {
+            window.cancelAnimationFrame(animFrameId);
+            animFrameId = -1;
+        }
         content.innerHTML = aboutScreen();
         return;
     } else if (window.location.href == baseUrl + "projects") {
         //console.log("Projects screen");
+        if (animFrameId != -1) {
+            window.cancelAnimationFrame(animFrameId);
+            animFrameId = -1;
+        }
         content.innerHTML = projectsScreen();
         return;
 
@@ -317,8 +387,8 @@ function runParticleSim( numParticles ) {
 }
 
 function renderParticles() {
-    console.log(particles);
-    requestAnimationFrame(renderParticles);
+    //console.log(particles);
+    animFrameId = requestAnimationFrame(renderParticles);
 
     context.beginPath();
     particles.forEach((particle) => {
