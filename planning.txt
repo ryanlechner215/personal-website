@@ -4,6 +4,7 @@ Top priority
 -add icons to home and about page
 
 -make icons linkable on links page
+-add section coloring on about page
 -add pictures to about page
 ---------------------------------------------------------------------------
 -restructure code
