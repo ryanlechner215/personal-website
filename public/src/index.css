@@ -51,7 +51,7 @@ html {
 .header>*>button {
     margin-top: 6vh;
     border-color: rgb(255, 255, 255);
-    background-color: rgba(185, 247, 255, 0.354);
+    background-color: rgba(185, 247, 255, 0.734);
     border-radius: 1.3vw;
     border-width: 2px;
     border: 3px solid rgba(171, 242, 255, 0.868);
@@ -249,6 +249,42 @@ html {
 }
 .left-img {
     transform: translateX(-10vw);
+}
+
+
+
+.links-container {
+    width: 75vw;
+    margin-left: -10vw;
+}
+
+.link-icon-pair {
+    display: inline-block;
+    left: -10vw;
+    width: 25vw;
+    height: 18vw;
+    text-align: center;
+}
+.link-icon-pair>a {
+    pointer-events: all;
+    position: relative;
+    font-size: 5vw;
+    font-weight: bold;
+}
+.link-icon-pair>p {
+    position: relative;
+    text-wrap: pretty;
+    margin-left: 1.3vw;
+    font-size: 2vw;
+}
+.link-icon-pair>img {
+    position: relative;
+    background-color: white;
+    border-radius: 1vw;
+    object-fit:contain;
+    width: 10vw;
+    height: 10vw;
+    pointer-events: none;
 }
 
 

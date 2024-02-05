@@ -15,8 +15,8 @@ const particleRadius = 7;
 const boundStrength = 200;
 const despawnDist = 50;
 const transitionSpeed = 800;
-const mouseAttractStrength = 50;
-const mouseRepelStrength = 20;
+const mouseAttractStrength = 200;
+const mouseRepelStrength = 50;
 
 
 // Program-only variables
@@ -41,6 +41,7 @@ var mouse = {
     right: false
 };
 var numClasses = 1;
+var lastRenderTime = new Date().getTime();
 
 
 
@@ -57,6 +58,11 @@ if (window.location.href.split("#").length == 1) {
 }
 window.addEventListener("popstate", displayContent);
 window.addEventListener("scroll", handleScroll);
+window.addEventListener("keyup", (e) => {
+    if (e.keyCode == 88) {
+        console.log(particles);
+    }
+});
 
 function handleResize() {
     if (canvas != null) {
@@ -75,7 +81,7 @@ window.addEventListener("mousemove", (e) => {
     mouse.pos = new Pt3d(e.x, e.y, 1);
     mouse.vec = new Vec2d(e.movementX, e.movementY);
 });
-window.addEventListener("mousedown", (e) => {
+content.addEventListener("mousedown", (e) => {
     if (e.button == 0) {
         mouse.left = true;
     } else if (e.button == 1) {
@@ -84,7 +90,7 @@ window.addEventListener("mousedown", (e) => {
         mouse.right = true;
     }
 });
-window.addEventListener("mouseup", (e) => {
+content.addEventListener("mouseup", (e) => {
     if (e.button == 0) {
         mouse.left = false;
     } else if (e.button == 1) {
@@ -92,7 +98,12 @@ window.addEventListener("mouseup", (e) => {
     } else if (e.button == 2) {
         mouse.right = false;
     }
-})
+});
+content.addEventListener("mouseout", () => {
+    mouse.left = false;
+    mouse.middle = false;
+    mouse.right = false;
+});
 
 
 
@@ -205,7 +216,12 @@ class Particle {
     }
 
     update() {
-        if (this.pos.y > height + despawnDist) return this.despawn();
+        if (this.pos.y > height + despawnDist) {
+            return this.despawn();
+        }
+        if (this.pos.y == NaN || this.pos.x == NaN || this.vel.x == NaN || this.vel.y == NaN) {
+            return this.despawn(true);
+        }
         this.closest = null;
         this.vecToClosest = null;
         this.closestDist = width*2;
@@ -353,7 +369,6 @@ function displayContent() {
     // Checks URL against target URLs
     if (window.location.href == baseUrl) {
         //console.log("Home screen");
-        numClasses = 2;
         if (state == "about") {
             state = "transitioning";
             transitionOffAboutScreen();
@@ -370,13 +385,20 @@ function displayContent() {
                 content.innerHTML = homeScreen();
                 transitionToHomeScreen();
             }, transitionSpeed + 10);
+        } else if (state == "links") {
+            state = "transitioning";
+            transitionOffLinksScreen();
+            setTimeout(() => {
+                window.scrollTo(0,0);
+                content.innerHTML = homeScreen();
+                transitionToHomeScreen();
+            }, transitionSpeed + 10);
         } else {
             state = "transitioning";
             content.innerHTML = homeScreen();
             transitionToHomeScreen();
         }
     } else if (window.location.href == baseUrl + "about") {
-        numClasses = 1;
         //console.log("About screen");
         if (state == "simulating") {
             state = "transitioning";
@@ -387,9 +409,17 @@ function displayContent() {
                 content.innerHTML = aboutScreen();
                 transitionToAboutScreen();
             });
-        }else if (state == "projects") {
+        } else if (state == "projects") {
             state = "transitioning";
             transitionOffProjectsScreen();
+            setTimeout(() => {
+                window.scrollTo(0,0);
+                content.innerHTML = aboutScreen();
+                transitionToAboutScreen();
+            }, transitionSpeed + 10);
+        } else if (state == "links") {
+            state = "transitioning";
+            transitionOffLinksScreen();
             setTimeout(() => {
                 window.scrollTo(0,0);
                 content.innerHTML = aboutScreen();
@@ -401,7 +431,6 @@ function displayContent() {
             transitionToAboutScreen();
         }
     } else if (window.location.href == baseUrl + "projects") {
-        numClasses = 1;
         //console.log("Projects screen");
         if (state == "simulating") {
             state = "transitioning";
@@ -420,10 +449,50 @@ function displayContent() {
                 content.innerHTML = projectsScreen();
                 transitionToProjectsScreen();
             }, transitionSpeed + 10);
+        } else if (state == "links") {
+            state = "transitioning";
+            transitionOffLinksScreen();
+            setTimeout(() => {
+                window.scrollTo(0,0);
+                content.innerHTML = projectsScreen();
+                transitionToProjectsScreen();
+            }, transitionSpeed + 10);
         } else {
             state = "transitioning";
             content.innerHTML = projectsScreen();
             transitionToProjectsScreen();
+        }
+    } else if (window.location.href == baseUrl + "links") {
+        //console.log("Links screen");
+        if (state == "simulating") {
+            state = "transitioning";
+            transitionOffHomeScreen();
+            despawnParticles(function() {
+                state = "transitioning";
+                window.scrollTo(0,0);
+                content.innerHTML = linksScreen();
+                transitionToLinksScreen();
+            });
+        } else if (state == "about") {
+            state = "transitioning";
+            transitionOffAboutScreen();
+            setTimeout(() => {
+                window.scrollTo(0,0);
+                content.innerHTML = linksScreen();
+                transitionToLinksScreen();
+            }, transitionSpeed + 10);
+        } else if (state == "projects") {
+            state = "transitioning";
+            transitionOffProjectsScreen();
+            setTimeout(() => {
+                window.scrollTo(0,0);
+                content.innerHTML = linksScreen();
+                transitionToLinksScreen();
+            }, transitionSpeed + 10);
+        } else {
+            state = "transitioning";
+            content.innerHTML = linksScreen();
+            transitionToLinksScreen();
         }
     }
 }
@@ -493,7 +562,9 @@ function displayHeader() {
         }
     };
     linksButton.onclick = function() {
-        dropDownLinks();
+        if (state != "transitioning" && state != "despawning") {
+            navigate("links");
+        }
     };
 
     homeButton.addEventListener("contextmenu", (e) => {
@@ -525,7 +596,8 @@ function homeScreen() {
             <h1 class="scrollable-element blur">Welcome</h1>
                 <p class="scrollable-element blur"><b>My name is Ryan Lechner</b>, and <u>I'm
                     a graphics and AI-focused software developer</u>. I'm currently looking for work 
-                    in project-based roles. For more details on my experience and specialties, 
+                    in project-based roles to find out what I want to do for a career. 
+                    For more details on my experience and specialties, 
                     head on over to the about page.</p>
             <div class="spacer"></div>
             <p class="scrollable-element blur">If you want to play around with
@@ -538,7 +610,7 @@ function homeScreen() {
             <div class="spacer"></div>
             <p class="scrollable-element blur">Feel free to contact me on my 
                 <a href="https://www.linkedin.com/in/ryan-lechner2/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, 
-                which can be found in the Links dropdown menu as well.</p>
+                which can be found in the Links page as well.</p>
             <p class="scrollable-element blur">Have a pleasure exploring!</p>
             <div class="spacer"></div>
             <div class="spacer"></div>
@@ -702,7 +774,7 @@ function projectsScreen() {
                         so if you wish, you can inspect the code at your leisure.</p>
                     <p><b>A quick explanation of the boss:</b> it is coded as a linked list, 
                         with each segment loosely following its parent. The boss 
-                        has 3 phases, idle, attacking, and homing, during each of which the 
+                        has 3 phases: idle, attacking, and homing. During each of which, the 
                         player must avoid becoming constricted to part of the screen. 
                         To defeat it, you have to hit its rattler 5 times, but you can 
                         only damage it when it lights up yellow.</p>
@@ -723,12 +795,39 @@ function projectsScreen() {
                     <p>Monsters of the Sea was originally a board game created 
                         by my friend and roommate, Lucas Klopfenstein. Together with 
                         Quin Houck, we are making it playable on the web.</p>
-                    <p>This is a longer-term project to which my main contribution will be 
+                    <p>This is a longer-term project to which my main contribution is 
                         a series of bots for the player to play against in lieu of 
                         another opponent or in the campaign.<p>
                     <p><i>Additional credits to: Quin Houck, Lucas Klopfenstein</i></p>
                 </div>
                 <div class="spacer2"></div>
+            </div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+        </div>
+        `
+    )
+}
+
+function linksScreen() {
+    return (
+        `
+        <div class="center-div" id="main-container">
+            <div class="spacer"></div>
+            <h1 class="scrollable-element">Links</h1>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="links-container scrollable-element">
+                <div class="link-icon-pair">
+                    <img src="./images/icons/github.png" alt="GitHub icon"></img>
+                    <a href="https://github.com/ryanlechner215" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <p>@ryanlechner215</p>
+                </div>
+                <div class="link-icon-pair">
+                    <img src="./images/icons/linkedin.png" alt="LinkedIn icon"></img>
+                    <a href="https://www.linkedin.com/in/ryan-lechner2/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <p>@ryan-lechner2</p>
+                </div>
             </div>
             <div class="spacer"></div>
             <div class="spacer"></div>
@@ -838,6 +937,35 @@ function transitionOffProjectsScreen() {
     container.style.transform = "translateY(5vh)";
 }
 
+// Fades in projects screen, enables buttons once done
+//
+function transitionToLinksScreen() {
+    setTimeout(() => {
+        console.log("Transitioning to links screen");
+        const container = document.getElementById("main-container");
+        scrollableElements = document.querySelectorAll(".scrollable-element");
+        handleScroll();
+        container.style.transition = `ease-in-out 0.${transitionSpeed / 100}s`;
+        container.style.opacity = "1";
+        container.style.transform = "translateY(0vh)";
+        setTimeout(() => {
+            handleScroll();
+            container.style.transition = "ease 0.3s";
+            state = "links";
+        }, transitionSpeed + 10);
+    }, 100);
+}
+
+// Fades out projects screen, disables buttons
+//
+function transitionOffLinksScreen() {
+    console.log("Transitioning off links screen");
+    const container = document.getElementById("main-container");
+    container.style.transition = `ease-in-out 0.${transitionSpeed / 100}s`;
+    container.style.opacity = "0";
+    container.style.transform = "translateY(5vh)";
+}
+
 // Fades scrollable elements appropriately
 //
 function handleScroll() {
@@ -891,11 +1019,26 @@ function runParticleSim( numParticles ) {
 
 function renderParticles() {
     //console.log(particles);
-    animFrameId = requestAnimationFrame(renderParticles);
+    const currentTime = new Date().getTime();
+    //console.log(currentTime-lastRenderTime);
+    setTimeout(() => {
+        animFrameId = requestAnimationFrame(renderParticles);
+        lastRenderTime = new Date().getTime();
+    }, Math.max(16-(currentTime-lastRenderTime), 1));
 
     context.clearRect(0, 0, width, height);
 
     particles.forEach((particle) => {
+        if (state == "despawning") return;
+        if (particle == null || particle.despawned == true) {
+            var idx = particles.indexOf(particle);
+            //console.log(idx + " needs replacing")
+            particles.splice(idx, 1, new Particle())
+        }
+    });
+
+    particles.forEach((particle) => {
+
         particle.update();
         particle.render(context);
     })

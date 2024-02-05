@@ -1,13 +1,13 @@
 Top priority
 ---------------------------------------------------------------------------
--add links dropdown/modal
--implement frame rate
+-add links page
 -add section links to about page
+-add icons to home and about page
+-add media icons to links page
 
+-restructure code
 -add pictures to about page
-
--add glimpes of projects
-    `->(picture, on hover plays a short video)
+-add links dropdown/modal
 ---------------------------------------------------------------------------
 -particle limiter based on render time
 -implement Delauney triangulation
@@ -23,6 +23,7 @@ Not in priority list
 -add mobile compatibility
 -smooth scrolling
 -make sim use window's pos on screen for borders
+-add project applets
 
 
 
