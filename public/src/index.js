@@ -692,6 +692,8 @@ function aboutScreen() {
                 of the outcome, think of the chess bots implemented by chess.com, 
                 albeit with a much smaller training set.</p>
             <a class="scrollable-element" href="https://monstersofthesea.io" target="_blank" rel="noopener noreferrer">Monsters of the Sea</a>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
             <h2 class="scrollable-element">Graphics experience</h2>
             <p class="scrollable-element">I've made the barebones engines behind a couple  
                 indie games, and have created <b>two technical 3d renderers</b> 
@@ -756,7 +758,7 @@ function projectsScreen() {
             <p class="scrollable-element" style="margin-top:-3.7vw">These are listed newest-first. Hover over images to 
                 play example gifs! (Some projects do not have gifs)</p>
             <div class="spacer"></div>
-            <div class="project-unit scrollable-element" style="background-color: rgba(229, 146, 12, 0.33)">
+            <div class="project-unit scrollable-element" style="background-color: rgba(229, 124, 12, 0.675)">
                 <div class="spacer2"></div>
                 <h2><a href="https://main.d1rk2ynogd8lka.amplifyapp.com/" target="_blank" rel="noopener noreferrer">Arcade Game</a></h2>
                 <h3>Arcade-style web game - (Jan. 2024)</h3>
@@ -783,7 +785,7 @@ function projectsScreen() {
                 <div class="spacer2"></div>
             </div>
             <div class="spacer"></div>
-            <div class="project-unit scrollable-element left" style="background-color: rgba(229, 146, 12, 0.33)">
+            <div class="project-unit scrollable-element left" style="background-color: rgba(251, 251, 11, 0.524)">
                 <div class="spacer2"></div>
                 <h2><a href="https://monstersofthesea.io/" target="_blank" rel="noopener noreferrer">Monsters of the Sea</a></h2>
                 <h3>Web version of board game - (November 2023 - current)</h3>
