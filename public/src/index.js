@@ -67,7 +67,6 @@ function handleResize() {
         context.strokeStyle = "rgba(171, 242, 255, 0.868)";
         context.globalCompositeOperation = "lighter";
     }
-    handleScroll();
 };
 handleResize();
 
@@ -359,6 +358,7 @@ function displayContent() {
             state = "transitioning";
             transitionOffAboutScreen();
             setTimeout(() => {
+                window.scrollTo(0,0);
                 content.innerHTML = homeScreen();
                 transitionToHomeScreen();
             }, transitionSpeed + 10);
@@ -366,6 +366,7 @@ function displayContent() {
             state = "transitioning";
             transitionOffProjectsScreen();
             setTimeout(() => {
+                window.scrollTo(0,0);
                 content.innerHTML = homeScreen();
                 transitionToHomeScreen();
             }, transitionSpeed + 10);
@@ -382,6 +383,7 @@ function displayContent() {
             transitionOffHomeScreen();
             despawnParticles(function() {
                 state = "transitioning";
+                window.scrollTo(0,0);
                 content.innerHTML = aboutScreen();
                 transitionToAboutScreen();
             });
@@ -389,6 +391,7 @@ function displayContent() {
             state = "transitioning";
             transitionOffProjectsScreen();
             setTimeout(() => {
+                window.scrollTo(0,0);
                 content.innerHTML = aboutScreen();
                 transitionToAboutScreen();
             }, transitionSpeed + 10);
@@ -405,6 +408,7 @@ function displayContent() {
             transitionOffHomeScreen();
             despawnParticles(function() {
                 state = "transitioning";
+                window.scrollTo(0,0);
                 content.innerHTML = projectsScreen();
                 transitionToProjectsScreen();
             });
@@ -412,6 +416,7 @@ function displayContent() {
             state = "transitioning";
             transitionOffAboutScreen();
             setTimeout(() => {
+                window.scrollTo(0,0);
                 content.innerHTML = projectsScreen();
                 transitionToProjectsScreen();
             }, transitionSpeed + 10);
@@ -452,7 +457,7 @@ function displayHeader() {
         <div class="header-line" style="flex: 0.8"></div>
         <button id="home-button">Home</button>
 
-        <div class="header-line" style="flex: 2"></div>
+        <div class="header-line" style="flex: 3"></div>
         <button id="about-button">About</button>
 
         <div class="header-line" style="flex: 0.6"></div>
@@ -461,7 +466,7 @@ function displayHeader() {
         <div class="header-line" style="flex: 0.6"></div>
         <button id="links-button">Links</button>
 
-        <div class="header-line" style="flex: 1"></div>
+        <div class="header-line" style="flex: 0.1"></div>
     </div>
     `);
     
@@ -514,33 +519,34 @@ function homeScreen() {
         `
         <canvas id="particle-sim" class="particle-sim"></canvas>
         <div class="center-div" id="main-container">
-            <div></div>
-            <div></div>
-            <div></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
             <h1 class="scrollable-element blur">Welcome</h1>
-            <p class="scrollable-element blur"><b>My name is Ryan Lechner</b>, and <u>I'm
-                a graphics and AI-focused software developer</u>. I'm currently looking for work 
-                in project-based roles. For more details on my experience and specialties, 
-                head on over to the about page.</p>
-            <div></div>
+                <p class="scrollable-element blur"><b>My name is Ryan Lechner</b>, and <u>I'm
+                    a graphics and AI-focused software developer</u>. I'm currently looking for work 
+                    in project-based roles. For more details on my experience and specialties, 
+                    head on over to the about page.</p>
+            <div class="spacer"></div>
             <p class="scrollable-element blur">If you want to play around with
                 the particles on this page, click and drag your mouse around.</p>
             <p class="scrollable-element blur"><b>Left-click will attract</b> nearby
                 particles, and <b>right-click will repel</b> them.</p>
-            <div></div>
+            <div class="spacer"></div>
             <p class="scrollable-element blur">I will be keeping this webpage
                 up-to-date with new projects and current ventures.</p>
-            <div></div>
+            <div class="spacer"></div>
             <p class="scrollable-element blur">Feel free to contact me on my 
-                LinkedIn, which can be found in the Links dropdown menu.</p>
+                <a href="https://www.linkedin.com/in/ryan-lechner2/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, 
+                which can be found in the Links dropdown menu as well.</p>
             <p class="scrollable-element blur">Have a pleasure exploring!</p>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
         </div>
         `
     )
@@ -555,43 +561,46 @@ function aboutScreen() {
             <img src="./images/prof_pic.JPG" alt="picture of me" class="scrollable-element"/>
             <h1 class="scrollable-element">Ryan</h1>
             <h1 style="margin-top: -6.5vw; margin-left: 2.7vw" class="scrollable-element">Lechner</h1>
-            <div></div>
+            <div class="spacer"></div>
             <h3 class="scrollable-element">Hi there!</h3>
             <p class="scrollable-element">As is written on the main page, 
-                I'm a <u>software developer</u>. I'm currently in my final year at 
+                <u>I'm a software developer focused on graphics and AI</u>. 
+                I'm currently in my final year at 
                 Purdue University, and I will be graduating this May with a major 
-                in <b>computer science</b> and a minor in English. I'm 
-                looking for employment at an <u>intermediate to advanced</u> level.</p>
-            <div></div>
+                in <b>computer science</b> and a minor in English. <u>I'm 
+                looking for employment at an intermediate to advanced level.</u></p>
+            <div class="spacer"></div>
             <h2 class="scrollable-element">Who I am</h2>
             <p class="scrollable-element">Before getting into the nitty-gritty, 
                 I'll touch on who I am. <u>I thrive under pressure</u>. I love it. 
-                It always means there's more to <i>learn!</i></p>
-            <p class="scrollable-element">I like <b>optimizing and polishing</b> anything that 
+                It usually means there's more to <i>learn</i>.</p>
+            <p class="scrollable-element"><b>I like optimizing and polishing</b> anything that 
                 I have the time for, I learn extremely quickly, and, while it's 
-                not my first choice, I am a very capable leader. I have a <i>ton</i> 
+                not my first choice, I'm a very capable leader. I have a <i>ton</i> 
                 of hobbies and interests, but I'll get more into those at the 
                 bottom of this page.</p>
-            <div></div>
+            <div class="spacer"></div>
             <h2 class="scrollable-element">Club president</h2>
             <p class="scrollable-element">I've also been lucky enough to be 
-                the <u>president of the roundet (Spikeball) club</u> here at Purdue!</p>
-            <p class="scrollable-element">During my presidency, 
-                <b>we've grown from 300 to over 800</b> members. We've hosted 
-                5 tournaments and ran 3 other events while I have been on the 
+                the <u>president of the roundnet (Spikeball) club</u> here at Purdue.</p>
+            <p class="scrollable-element"><b>During my presidency, 
+                we've grown from 300 to over 800 members</b>. We've hosted 
+                5 tournaments and run 3 other events while I have been on the 
                 executive team. I also compete around the mid-west, which 
                 has been an amazing travel opportunity for me.</p>
-            <div></div>
+            <div class="spacer"></div>
             <h2 class="scrollable-element">Fields of interest</h2>
             <p class="scrollable-element">While I would like to focus on 
-                <u>graphics and AI</u>, I have a passion for most programming work, 
+                <u>graphics and AI</u>, I have a passion for programming in general, 
                 especially work requiring <i>in-depth, creative problem 
                 solving.</i></p>
             <p class="scrollable-element">I've found that these two interests 
                 cross paths in game development, but that doesn't include the 
-                whole scope of the field. <b>Physics/game engine development</b> and 
-                <b>agent AI creation</b> are where I can apply myself best.</p>
-            <div></div>
+                whole scope of the field. <b>Physics/game engine development and 
+                AI agent creation</b> are where I can apply myself best. I'd 
+                like to try my hand at gameplay programming beyond personal 
+                games as well, though.</p>
+            <div class="spacer"></div>
             <h2 class="scrollable-element">AI work</h2>
             <p class="scrollable-element">I have done a lot of AI stuff. 
                 I've made <u>graph-search</u> models, <u>decision-tree</u> algorithms, 
@@ -602,14 +611,18 @@ function aboutScreen() {
                 couple games. An example, that I've linked below, is currently 
                 up and running (and is a rather fun, quick, arcade-style game). I've gone 
                 into more detail on the projects page, but <b>the snake boss</b> is the 
-                AI agent that I'm alluding to, and it spawns at 500 points.
-                <br><a href="https://main.d1rk2ynogd8lka.amplifyapp.com/">Chuckle Nuts</a></p>
-            <p class="scrollable-element">I'm in the process of making 
-                another neural net for an indie game that I'm helping with.
-                <br><a href="https://monstersofthesea.io">Monsters of the Sea</a></p>
+                AI agent that I'm alluding to, and it spawns at 500 points. For a 
+                24-hour sprint to produce for a game jam, I'm rather proud of it.</p>
+            <a class="scrollable-element" href="https://main.d1rk2ynogd8lka.amplifyapp.com/" target="_blank" rel="noopener noreferrer">Arcade Game</a>
+            <p class="scrollable-element"><br>I'm in the process of making 
+                another neural net for an indie game that I'm helping with. The 
+                purpose of the net is to <u>train a series of bots</u>. For an idea 
+                of the outcome, think of the chess bots implemented by chess.com, 
+                albeit with a much smaller training set.</p>
+            <a class="scrollable-element" href="https://monstersofthesea.io" target="_blank" rel="noopener noreferrer">Monsters of the Sea</a>
             <h2 class="scrollable-element">Graphics experience</h2>
-            <p class="scrollable-element">I've made the "engines" behind a couple  
-                indie games, and have created two technical graphics engines 
+            <p class="scrollable-element">I've made the barebones engines behind a couple  
+                indie games, and have created <b>two technical 3d renderers</b> 
                 to explore the concepts behind more advanced rendering techniques, 
                 such as <u>parallax mapping</u>, <u>different shader mappings</u>, 
                 and <u>global illumination</u>.</p>
@@ -618,7 +631,18 @@ function aboutScreen() {
                 that I like these ones?). The next project on my list 
                 is a fabric simulation. I don't yet know if I have the 
                 physics-expertise for it, but I want to learn, nonetheless</p>
-            <div></div>
+            <div class="spacer"></div>
+            <h2 class="scrollable-element">Algorithms, generally</h2>
+            <p class="scrollable-element">Algorithms is a massive field. The more 
+                I learn, the more I realize I don't know. But <b>optimizing programs through 
+                clever techniques and data structures will forever be an interest 
+                of mine.</b></p>
+            <p class="scrollable-element">A very broad overview of what I've 
+                studied and implemented: <u>binary/quad/oct trees</u> and their corresponding 
+                manipulations, graph searches, linear optimization, <u>dynamic programming</u>, 
+                probabilistic algorithm analysis, and some stuff regarding sparse data 
+                sets.</p>
+            <div class="spacer"></div>
             <h2 class="scrollable-element">I mentioned hobbies...</h2>
             <p class="scrollable-element">Ah-hem. I rock climb, write both poetry 
                 and prose, and play Spikeball, volleyball, tennis, and ping pong.</p>
@@ -628,7 +652,7 @@ function aboutScreen() {
             <p class="scrollable-element">I also work out, take up small 
                 side hobbies (like Rubik's cubes and yo-yo'ing), and have a 
                 rather sizable collection of board games.</p>
-            <div></div>
+            <div class="spacer"></div>
             <h2 class="scrollable-element">What to look forward to</h2>
             <p class="scrollable-element">I am in the constant cycle of planning 
                 and writing my dream novel. I'm working on two startup projects, 
@@ -636,13 +660,13 @@ function aboutScreen() {
                 struggled with and had to overcome.</p>
             <p class="scrollable-element">Now, at the end of what has essentially 
                 become an essay, I bid you adieu!</p>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
         </div>
         `
     )
@@ -653,8 +677,59 @@ function aboutScreen() {
 function projectsScreen() {
     return (
         `
-        <div class="center-div" id="main-container">
+        <div class="center-div overwrite-pointer-events" id="main-container">
+            <div class="spacer"></div>
+            <div class="spacer"></div>
             <h1 class="scrollable-element">Projects</h1>
+            <p class="scrollable-element" style="margin-top:-3.7vw">These are listed newest-first. Hover over images to 
+                play example gifs! (Some projects do not have gifs)</p>
+            <div class="spacer"></div>
+            <div class="project-unit scrollable-element" style="background-color: rgba(229, 146, 12, 0.33)">
+                <div class="spacer2"></div>
+                <h2><a href="https://main.d1rk2ynogd8lka.amplifyapp.com/" target="_blank" rel="noopener noreferrer">Arcade Game</a></h2>
+                <h3>Arcade-style web game - (Jan. 2024)</h3>
+                <div class="description">
+                    <div>
+                        <img src="./images/chuckle-nuts-pic.png" alt="arcade game pic"></img>
+                        <img src="./images/chuckle-nuts-high.gif" class="active" alt="arcade game gif"></img>
+                    </div>
+                    <p>Made all in one weekend, this 
+                        simple-to-control dodge-and-weave game is more addictive 
+                        than it deserves to be.<p>
+                    <p>My contributions to the game cover most things gameplay-related: 
+                        the enemy movement and concepts, collision detection, boss phases, and 
+                        spawn mechanics. This was all written in JS, CSS, and HTML, 
+                        so if you wish, you can inspect the code at your leisure.</p>
+                    <p><b>A quick explanation of the boss:</b> it is coded as a linked list, 
+                        with each segment loosely following its parent. The boss 
+                        has 3 phases, idle, attacking, and homing, during each of which the 
+                        player must avoid becoming constricted to part of the screen. 
+                        To defeat it, you have to hit its rattler 5 times, but you can 
+                        only damage it when it lights up yellow.</p>
+                </div>
+                <div class="spacer2"></div>
+            </div>
+            <div class="spacer"></div>
+            <div class="project-unit scrollable-element left" style="background-color: rgba(229, 146, 12, 0.33)">
+                <div class="spacer2"></div>
+                <h2><a href="https://monstersofthesea.io/" target="_blank" rel="noopener noreferrer">Monsters of the Sea</a></h2>
+                <h3>Web version of board game - (November 2023 - current)</h3>
+                <div class="description">
+                    <div>
+                        <img src="./images/mots-pic.png" class="left-img" alt="pic of MOTS"></img>
+                        <img src="./images/mots-high.gif" class="active left-img" alt="gif of MOTS"></img>
+                    </div>
+                    <p>Monsters of the Sea was originally a board game created 
+                        by my friend and roommate, Lucas Klopfenstein. Together with 
+                        Quin Houck, we are making it playable on the web.</p>
+                    <p>This is a longer-term project to which my main contribution will be 
+                        a series of bots for the player to play against in lieu of 
+                        another opponent or in the campaign.<p>
+                </div>
+                <div class="spacer2"></div>
+            </div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
         </div>
         `
     )
@@ -770,8 +845,8 @@ function handleScroll() {
         var percentFromBottom = Math.max(window.innerHeight - elementRect.top, 0)/window.innerHeight;
         var percentFromTop = Math.max(elementRect.bottom, 0)/window.innerHeight;
         //console.log(percentFromBottom);
-        if (element.classList.length > numClasses) {
-            element.classList.remove(element.classList[numClasses]);
+        if (element.classList.contains("opacity-0") || element.classList.contains("opacity-10") || element.classList.contains("opacity-25") || element.classList.contains("opacity-50") || element.classList.contains("opacity-75") || element.classList.contains("opacity-100")) {
+            element.classList.remove(element.classList[element.classList.length - 1]);
         }
 
         if (percentFromBottom < .05 || percentFromTop < .15) {
@@ -782,7 +857,7 @@ function handleScroll() {
             element.classList.add("opacity-25");
         } else if (percentFromBottom < .35 || percentFromTop < .37) {
             element.classList.add("opacity-50");
-        } else if (percentFromBottom < .45 || percentFromTop < .4) {
+        } else if (percentFromBottom < .45 || percentFromTop < .47) {
             element.classList.add("opacity-75");
         } else {
             element.classList.add("opacity-100");

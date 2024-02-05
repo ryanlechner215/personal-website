@@ -85,6 +85,9 @@ html {
     border-top: 2px dashed rgba(0, 0, 0, 0.702);
 }
 
+
+
+
 .particle-sim {
     position: fixed;
     top: 0px;
@@ -93,6 +96,9 @@ html {
     width: 100vw;
     z-index: 1;
 }
+
+
+
 
 
 
@@ -133,12 +139,25 @@ html {
     margin-left: 1.3vw;
     font-size: 2vw;
 }
-.center-div>*>a {
+.center-div>p>b {
+    background-color: rgba(244, 15, 79, 0.335);
+    border-radius: 1vw;
+
+}
+.center-div>p>u {
+    background-color: rgba(229, 146, 12, 0.33);
+    border-radius: 1vw;
+    
+}
+.center-div>a {
     pointer-events: all;
     text-wrap: pretty;
     margin-left: 2.3vw;
     font-size: 2.5vw;
     font-style: italic;
+}
+.center-div>*>a {
+    pointer-events: all;
 }
 .center-div>img {
     position: absolute;
@@ -150,13 +169,87 @@ html {
     height: 25vw;
     pointer-events: none;
 }
-.center-div>div {
+.center-div>*>*>*>b {
+    background-color: rgba(244, 15, 79, 0.335);
+    border-radius: 1vw;
+
+}
+
+
+
+.spacer {
     height: 5vh;
+}
+.spacer2 {
+    height: 2vh;
 }
 .blur {
     backdrop-filter: blur(2px);
     border-radius: 8vw;
 }
+.overwrite-pointer-events {
+    pointer-events: all !important;
+}
+
+
+
+
+.project-unit {
+    width: 80vw;
+    margin-left: -5vw;
+    border-radius: 8vw;
+}
+.project-unit>h2 {
+    margin-left: 5vw;
+    text-wrap: pretty;
+    font-size: 3vw;
+}
+.project-unit>h3 {
+    margin-left: 6.3vw;
+    font-size: 2.2vw;
+    margin-top: -2.3vw;
+    font-weight: normal;
+}
+.description {
+    margin-left: 5vw;
+    min-height: 35vw;
+    max-width: 70vw;
+    display: inline-block;
+}
+.description>*>img {
+    position: absolute;
+    left: 45vw;
+    margin-left: 2.5vw;
+    border-radius: 8vw;
+    width: 25vw;
+    height: 25vw;
+    object-fit: cover;
+}
+.description>div {
+    float: inline-end;
+    border-radius: 8vw;
+    width: 30vw;
+    height: 25vw;
+}
+.description>p {
+    text-wrap: pretty;
+    font-size: 2vw;
+}
+.active {
+    opacity: 0;
+}
+.active:hover {
+    opacity: 1;
+}
+.left {
+    margin-left: -15vw;
+}
+.left-img {
+    transform: translateX(-10vw);
+}
+
+
+
 
 .opacity-0 {
     opacity: 0;
@@ -176,6 +269,8 @@ html {
 .opacity-100 {
     opacity: 1;
 }
+
+
 
 
 
