@@ -1,14 +1,13 @@
 Top priority
 ---------------------------------------------------------------------------
--add links page
 -add section links to about page
 -add icons to home and about page
--add media icons to links page
 
--restructure code
+-make icons linkable on links page
 -add pictures to about page
--add links dropdown/modal
 ---------------------------------------------------------------------------
+-restructure code
+-add links dropdown/modal
 -particle limiter based on render time
 -implement Delauney triangulation
 -ensure responsiveness

@@ -987,7 +987,7 @@ function handleScroll() {
             element.classList.add("opacity-25");
         } else if (percentFromBottom < .35 || percentFromTop < .37) {
             element.classList.add("opacity-50");
-        } else if (percentFromBottom < .45 || percentFromTop < .47) {
+        } else if (percentFromBottom < .40 || percentFromTop < .43) {
             element.classList.add("opacity-75");
         } else {
             element.classList.add("opacity-100");
