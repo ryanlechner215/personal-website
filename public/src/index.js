@@ -706,6 +706,7 @@ function projectsScreen() {
                         player must avoid becoming constricted to part of the screen. 
                         To defeat it, you have to hit its rattler 5 times, but you can 
                         only damage it when it lights up yellow.</p>
+                    <p><i>Additional credits to: Quin Houck, Lucas Klopfenstein</i></p>
                 </div>
                 <div class="spacer2"></div>
             </div>
@@ -725,6 +726,7 @@ function projectsScreen() {
                     <p>This is a longer-term project to which my main contribution will be 
                         a series of bots for the player to play against in lieu of 
                         another opponent or in the campaign.<p>
+                    <p><i>Additional credits to: Quin Houck, Lucas Klopfenstein</i></p>
                 </div>
                 <div class="spacer2"></div>
             </div>

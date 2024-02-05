@@ -169,11 +169,6 @@ html {
     height: 25vw;
     pointer-events: none;
 }
-.center-div>*>*>*>b {
-    background-color: rgba(244, 15, 79, 0.335);
-    border-radius: 1vw;
-
-}
 
 
 
@@ -234,6 +229,14 @@ html {
 .description>p {
     text-wrap: pretty;
     font-size: 2vw;
+}
+.description>*>b {
+    background-color: rgba(244, 15, 79, 0.335);
+    border-radius: 1vw;
+
+}
+.description>*>i {
+    margin-left: 15vw;
 }
 .active {
     opacity: 0;
