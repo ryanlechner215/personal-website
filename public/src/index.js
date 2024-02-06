@@ -772,7 +772,7 @@ function projectsScreen() {
                         the enemy movement and concepts, collision detection, boss phases, and 
                         spawn mechanics. This was all written in JS, CSS, and HTML, 
                         so if you wish, you can inspect the code at your leisure.</p>
-                    <p><i>Additional credits to: Quin Houck, Lucas Klopfenstein</i></p>
+                    <p style="margin-top: 10vw"><i>Additional credits to: Quin Houck, Lucas Klopfenstein</i></p>
                 </div>
                 <div class="spacer2"></div>
             </div>
