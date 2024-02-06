@@ -636,16 +636,16 @@ function aboutScreen() {
             <div class="spacer"></div>
             <h3 class="scrollable-element">Hi there!</h3>
             <p class="scrollable-element">As is written on the main page, 
-                <u>I'm a software developer focused on graphics and AI</u>. 
+                <u style="background-color: #00000000">I'm a software developer focused on graphics and AI</u>. 
                 I'm currently in my final year at 
                 Purdue University, and I will be graduating this May with a major 
-                in <b>computer science</b> and a minor in English. I'm looking for 
-                a <u>project-facing role</u>, and want to learn from those who have tread 
+                in <b style="background-color: #00000000">computer science</b> and a minor in English. I'm looking for 
+                a <u style="background-color: #00000000">project-facing role</u>, and want to learn from those who have tread 
                 before me as much as possible.</p>
             <div class="spacer"></div>
             <h2 class="scrollable-element">Who I am</h2>
             <p class="scrollable-element">Before getting into the nitty-gritty, 
-                I'll touch on who I am. <u>I thrive under pressure</u>. I love it. 
+                I'll touch on who I am. <u style="background-color: #00000000">I thrive under pressure</u>. I love it. 
                 It usually means there's more to <i>learn</i>.</p>
             <p class="scrollable-element"><b>I like optimizing and polishing</b> anything that 
                 I have the time for, I learn quickly, and I spend time outside of 
