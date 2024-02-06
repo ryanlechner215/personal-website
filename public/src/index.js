@@ -595,7 +595,7 @@ function homeScreen() {
             <div class="spacer"></div>
             <h1 class="scrollable-element blur">Welcome</h1>
                 <p class="scrollable-element blur">My name is Ryan Lechner, and I'm
-                    a 3D-graphics and AI-focused software developer. I'm currently looking 
+                    an AI-focused software developer. I'm currently looking 
                     for work in project-based roles where I can learn from industry professionals. 
                     For more details on my experience and specialties, 
                     head to the <u id="about-link" style="background-color: #00000000; font-weight: bold; pointer-events: all">about page.</u></p>
@@ -609,7 +609,7 @@ function homeScreen() {
                 up-to-date with new projects and current ventures.</p>
             <div class="spacer"></div>
             <p class="scrollable-element blur">Feel free to contact me on my 
-                <a href="https://www.linkedin.com/in/ryan-lechner2/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, 
+                <a style="font-weight: bold" href="https://www.linkedin.com/in/ryan-lechner2/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, 
                 which can be found in the Links page as well.</p>
             <div class="spacer"></div>
             <div class="spacer"></div>
@@ -633,15 +633,17 @@ function aboutScreen() {
             <h1 class="scrollable-element">Ryan</h1>
             <h1 style="margin-top: -6.5vw; margin-left: 2.7vw" class="scrollable-element">Lechner</h1>
             <div class="spacer"></div>
+
             <h3 class="scrollable-element">Hi there!</h3>
             <p class="scrollable-element">As is written on the main page, 
-                <u>I'm a software developer focused on graphics and AI</u>. 
+                <u>I'm a software developer focused on artificial intelligence</u>. 
                 I'm currently in my final year at 
                 Purdue University, and I will be graduating this May with a major 
                 in <b>computer science</b> and a minor in English. I'm looking for 
                 a <u>project-facing role</u>, and want to learn from those who have tread 
                 before me as much as possible.</p>
             <div class="spacer"></div>
+
             <h2 class="scrollable-element">Who I am</h2>
             <p class="scrollable-element">Before getting into the nitty-gritty, 
                 I'll touch on who I am. <u>I thrive under pressure</u>. I love it. 
@@ -652,6 +654,7 @@ function aboutScreen() {
                 of hobbies and interests, but I'll get more into those at the 
                 bottom of this page.</p>
             <div class="spacer"></div>
+
             <h2 class="scrollable-element">Club president</h2>
             <p class="scrollable-element">I've also been lucky enough to be 
                 the <u>president of the roundnet (Spikeball) club</u> here at Purdue.</p>
@@ -661,11 +664,12 @@ function aboutScreen() {
                 executive team. I also compete around the mid-west, which 
                 has been an amazing travel opportunity for me.</p>
             <div class="spacer"></div>
+
             <h2 class="scrollable-element">Fields of interest</h2>
-            <p class="scrollable-element">While I would like to focus on 
-                <u>graphics and AI</u>, I have a passion for programming in general, 
+            <p class="scrollable-element">I plan to focus on <u>AI and machine 
+                learning</u> eventually, but I have a passion for programming in general, 
                 especially work requiring <i>in-depth, creative problem 
-                solving.</i></p>
+                solving.</i> So, software development roles are what I'm currently looking for.</p>
             <p class="scrollable-element">I've found that these two interests 
                 cross paths in game development, but that doesn't include the 
                 whole scope of the field. <b>Physics/game engine development and 
@@ -673,6 +677,7 @@ function aboutScreen() {
                 like to try my hand at gameplay programming beyond personal 
                 games as well, though.</p>
             <div class="spacer"></div>
+
             <h2 class="scrollable-element">AI work</h2>
             <p class="scrollable-element">I have done a lot of AI stuff. 
                 I've made <u>graph-search</u> models, <u>decision-tree</u> algorithms, 
@@ -694,6 +699,7 @@ function aboutScreen() {
             <a class="scrollable-element" href="https://monstersofthesea.io" target="_blank" rel="noopener noreferrer">Monsters of the Sea</a>
             <div class="spacer"></div>
             <div class="spacer"></div>
+
             <h2 class="scrollable-element">Graphics experience</h2>
             <p class="scrollable-element">I've made the barebones engines behind a couple  
                 indie games, and have created two technical 3d renderers 
@@ -706,6 +712,7 @@ function aboutScreen() {
                 is a fabric simulation. I don't yet know if I have the 
                 physics-expertise for it, but I want to learn, nonetheless</p>
             <div class="spacer"></div>
+
             <h2 class="scrollable-element">Algorithms, generally</h2>
             <p class="scrollable-element">Algorithms is a massive field. The more 
                 I learn, the more I realize I don't know. But <b>optimizing programs through 
@@ -717,6 +724,7 @@ function aboutScreen() {
                 probabilistic algorithm analysis, and some stuff regarding sparse data 
                 sets.</p>
             <div class="spacer"></div>
+
             <h2 class="scrollable-element">I mentioned hobbies...</h2>
             <p class="scrollable-element">Ah-hem. I rock climb, write both poetry 
                 and prose, and play Spikeball, volleyball, tennis, and ping pong.</p>
@@ -727,6 +735,7 @@ function aboutScreen() {
                 side hobbies (like Rubik's cubes and yo-yo'ing), and have a 
                 rather sizable collection of board games.</p>
             <div class="spacer"></div>
+
             <h2 class="scrollable-element">What to look forward to</h2>
             <p class="scrollable-element">I am in the constant cycle of planning 
                 and writing my dream novel. I'm working on two startup projects, 
