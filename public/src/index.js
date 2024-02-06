@@ -595,10 +595,10 @@ function homeScreen() {
             <div class="spacer"></div>
             <h1 class="scrollable-element blur">Welcome</h1>
                 <p class="scrollable-element blur"><b>My name is Ryan Lechner</b>, and <u>I'm
-                    a graphics and AI-focused software developer</u>. I'm currently looking for work 
-                    in project-based roles to find out what I want to do for a career. 
+                    a 3D-graphics and AI-focused software developer</u>. I'm currently looking 
+                    for work in project-based roles where I can learn from industry professionals. 
                     For more details on my experience and specialties, 
-                    head on over to the about page.</p>
+                    head to the about page.</p>
             <div class="spacer"></div>
             <p class="scrollable-element blur">If you want to play around with
                 the particles on this page, click and drag your mouse around.</p>
@@ -639,16 +639,17 @@ function aboutScreen() {
                 <u>I'm a software developer focused on graphics and AI</u>. 
                 I'm currently in my final year at 
                 Purdue University, and I will be graduating this May with a major 
-                in <b>computer science</b> and a minor in English. <u>I'm 
-                looking for employment at an intermediate to advanced level.</u></p>
+                in <b>computer science</b> and a minor in English. I'm looking for 
+                a <u>project-facing role</u>, and want to learn from those who have tread 
+                before me as much as possible.</p>
             <div class="spacer"></div>
             <h2 class="scrollable-element">Who I am</h2>
             <p class="scrollable-element">Before getting into the nitty-gritty, 
                 I'll touch on who I am. <u>I thrive under pressure</u>. I love it. 
                 It usually means there's more to <i>learn</i>.</p>
             <p class="scrollable-element"><b>I like optimizing and polishing</b> anything that 
-                I have the time for, I learn extremely quickly, and, while it's 
-                not my first choice, I'm a very capable leader. I have a <i>ton</i> 
+                I have the time for, I learn quickly, and I spend time outside of 
+                work and school learning whenever I can. I have a <i>ton</i> 
                 of hobbies and interests, but I'll get more into those at the 
                 bottom of this page.</p>
             <div class="spacer"></div>
@@ -767,19 +768,10 @@ function projectsScreen() {
                         <img src="./images/chuckle-nuts-pic.png" alt="arcade game pic"></img>
                         <img src="./images/chuckle-nuts-high.gif" class="active" alt="arcade game gif"></img>
                     </div>
-                    <p>Made all in one weekend, this 
-                        simple-to-control dodge-and-weave game is more addictive 
-                        than it deserves to be.<p>
-                    <p>My contributions to the game cover most things gameplay-related: 
+                    <p>My contributions to this game-jam game cover most things gameplay-related: 
                         the enemy movement and concepts, collision detection, boss phases, and 
                         spawn mechanics. This was all written in JS, CSS, and HTML, 
                         so if you wish, you can inspect the code at your leisure.</p>
-                    <p><b>A quick explanation of the boss:</b> it is coded as a linked list, 
-                        with each segment loosely following its parent. The boss 
-                        has 3 phases: idle, attacking, and homing. During each of which, the 
-                        player must avoid becoming constricted to part of the screen. 
-                        To defeat it, you have to hit its rattler 5 times, but you can 
-                        only damage it when it lights up yellow.</p>
                     <p><i>Additional credits to: Quin Houck, Lucas Klopfenstein</i></p>
                 </div>
                 <div class="spacer2"></div>
@@ -794,12 +786,12 @@ function projectsScreen() {
                         <img src="./images/mots-pic.png" class="left-img" alt="pic of MOTS"></img>
                         <img src="./images/mots-high.gif" class="active left-img" alt="gif of MOTS"></img>
                     </div>
-                    <p>Monsters of the Sea was originally a board game created 
-                        by my friend and roommate, Lucas Klopfenstein. Together with 
-                        Quin Houck, we are making it playable on the web.</p>
-                    <p>This is a longer-term project to which my main contribution is 
-                        a series of bots for the player to play against in lieu of 
-                        another opponent or in the campaign.<p>
+                    <p>Monsters of the Sea was originally a board game, and 
+                        we are now making it playable on the web.</p>
+                    <p>I am creating a series of bots for the user to play against, which 
+                        range from simple decision-tree models to neural-networks. One of 
+                        by biggest takeaways so far has been gettings bots to train each 
+                        other through simulated games in a semi-reinforcement environment.<p>
                     <p><i>Additional credits to: Quin Houck, Lucas Klopfenstein</i></p>
                 </div>
                 <div class="spacer2"></div>
@@ -981,15 +973,15 @@ function handleScroll() {
             element.classList.remove(element.classList[element.classList.length - 1]);
         }
 
-        if (percentFromBottom < .05 || percentFromTop < .15) {
+        if (percentFromBottom < .05 || percentFromTop < .10) {
             element.classList.add("opacity-0");
-        } else if (percentFromBottom < .10 || percentFromTop < .25) {
+        } else if (percentFromBottom < .12 || percentFromTop < .15) {
             element.classList.add("opacity-10");
-        } else if (percentFromBottom < .27 || percentFromTop < .32) {
+        } else if (percentFromBottom < .17 || percentFromTop < .20) {
             element.classList.add("opacity-25");
-        } else if (percentFromBottom < .35 || percentFromTop < .37) {
+        } else if (percentFromBottom < .25 || percentFromTop < .25) {
             element.classList.add("opacity-50");
-        } else if (percentFromBottom < .40 || percentFromTop < .43) {
+        } else if (percentFromBottom < .30 || percentFromTop < .30) {
             element.classList.add("opacity-75");
         } else {
             element.classList.add("opacity-100");

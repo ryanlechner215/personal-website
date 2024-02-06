@@ -1,5 +1,6 @@
 Top priority
 ---------------------------------------------------------------------------
+-add link on "about page"
 -add section links to about page
 -add icons to home and about page
 
