@@ -104,7 +104,7 @@ html {
 
 .center-div {
     position: absolute;
-    top: 22vh;
+    top: 23vh;
     left: 20vw;
     width: 60vw;
     height: auto;
@@ -160,6 +160,24 @@ html {
     pointer-events: none;
 }
 
+.center-div2 {
+    position: absolute;
+    top: 15vh;
+    left: 20vw;
+    width: 60vw;
+    height: auto;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 
 
 
@@ -180,7 +198,7 @@ html {
 .icon-left {
     height: 5vw;
     width: 5vw;
-    object-fit: cover;
+    object-fit: contain;
     position: absolute;
     left: -7vw;
     top: 40vw;
@@ -189,7 +207,7 @@ html {
 .icon-right {
     height: 5vw;
     width: 5vw;
-    object-fit: cover;
+    object-fit: contain;
     position: absolute;
     left: 67vw;
     top: 40vw;
@@ -260,27 +278,27 @@ html {
 
 
 .links-container {
+    height: min-content;
     width: 75vw;
     margin-left: -10vw;
+    display: flex;
 }
 
 .link-icon-pair {
+    flex: 1;
     display: inline-block;
-    left: -10vw;
-    width: 25vw;
-    height: 18vw;
     text-align: center;
 }
 .link-icon-pair>a {
     pointer-events: all;
     position: relative;
-    font-size: 5vw;
+    font-size: 4vw;
     font-weight: bold;
 }
 .link-icon-pair>p {
     position: relative;
+    z-index: 2;
     text-wrap: pretty;
-    margin-left: 1.3vw;
     font-size: 2vw;
 }
 .link-icon-pair>img {

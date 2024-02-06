@@ -533,7 +533,7 @@ function displayHeader() {
         <button id="projects-button">Projects</button>
 
         <div class="header-line" style="flex: 0.6"></div>
-        <button id="links-button">Links</button>
+        <button id="links-button">Links / Contact Info</button>
 
         <div class="header-line" style="flex: 0.1"></div>
     </div>
@@ -610,7 +610,7 @@ function homeScreen() {
             <div class="spacer"></div>
             <p class="scrollable-element blur">Feel free to contact me on my 
                 <a style="font-weight: bold" href="https://www.linkedin.com/in/ryan-lechner2/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, 
-                which can be found in the Links page as well.</p>
+                which can be found in the Contact/Links page as well.</p>
             <div class="spacer"></div>
             <div class="spacer"></div>
             <div class="spacer"></div>
@@ -823,12 +823,10 @@ function projectsScreen() {
 function linksScreen() {
     return (
         `
-        <div class="center-div" id="main-container">
+        <div class="center-div2" id="main-container">
+            <h1 style="font-size: 5.5vw" class="scrollable-element">Links / Contact Info</h1>
             <div class="spacer"></div>
-            <h1 class="scrollable-element">Links</h1>
-            <div class="spacer"></div>
-            <div class="spacer"></div>
-            <div class="links-container scrollable-element">
+            <div class="links-container">
                 <div class="link-icon-pair">
                     <img src="./images/icons/github.png" alt="GitHub icon"></img>
                     <a href="https://github.com/ryanlechner215" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -839,9 +837,10 @@ function linksScreen() {
                     <a href="https://www.linkedin.com/in/ryan-lechner2/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     <p>@ryan-lechner2</p>
                 </div>
+                <div style="margin-top: 5vw; background-color: rgba(242, 245, 19, 0.678); border-radius: 2vw; height: min-content" class="link-icon-pair">
+                    <p style="pointer-events: all"><b>Email</b>: ryanlechner215@yahoo.com</p>
+                </div>
             </div>
-            <div class="spacer"></div>
-            <div class="spacer"></div>
         </div>
         `
     )
