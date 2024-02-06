@@ -684,8 +684,8 @@ function aboutScreen() {
                 <u>path-finding</u> agents, and <u>linear-optimization</u> algorithms.
                 I've dabbled in <u>classification</u> algorithms, and I've created 
                 one <u>neural network</u>.</p>
-            <p class="scrollable-element">I also made AIs for enemies in a 
-                couple games. An example, that I've linked below, is currently 
+            <p class="scrollable-element">I also made AI algorithms for a 
+                couple indie games. One example, that I've linked below, is currently 
                 up and running (and is a rather fun, quick, arcade-style game). I've gone 
                 into more detail on the projects page, but the snake boss is the 
                 AI agent that I'm alluding to, and it spawns at 500 points. For a 
@@ -702,8 +702,8 @@ function aboutScreen() {
 
             <h2 class="scrollable-element">Graphics experience</h2>
             <p class="scrollable-element">I've made the barebones engines behind a couple  
-                indie games, and have created two technical 3d renderers 
-                to explore the concepts behind more advanced rendering techniques, 
+                indie games, and have created two technical 3D renderers 
+                to explore the concepts behind some rendering techniques, 
                 such as <u>parallax mapping</u>, <u>different shader mappings</u>, 
                 and <u>global illumination</u>.</p>
             <p class="scrollable-element">I've done projects with <u>image processing</u>, 
@@ -727,7 +727,7 @@ function aboutScreen() {
 
             <h2 class="scrollable-element">I mentioned hobbies...</h2>
             <p class="scrollable-element">Ah-hem. I rock climb, write both poetry 
-                and prose, and play Spikeball, volleyball, tennis, and ping pong.</p>
+                and prose, and play Spikeball, volleyball, tennis, pickleball, and ping pong.</p>
             <p class="scrollable-element">I enjoy home cooking, reading (philosophy, 
                 science-fiction, fantasy), video games, and anime. I haven't had 
                 much time for the last two in quite a while.</p>
