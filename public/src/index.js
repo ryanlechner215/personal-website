@@ -610,7 +610,7 @@ function homeScreen() {
             <div class="spacer"></div>
             <p class="scrollable-element blur">Feel free to contact me on my 
                 <a style="font-weight: bold" href="https://www.linkedin.com/in/ryan-lechner2/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, 
-                which can be found in the Contact/Links page as well.</p>
+                which can be found on the Links / Contact Info page as well.</p>
             <div class="spacer"></div>
             <div class="spacer"></div>
             <div class="spacer"></div>
