@@ -611,7 +611,6 @@ function homeScreen() {
             <p class="scrollable-element blur">Feel free to contact me on my 
                 <a href="https://www.linkedin.com/in/ryan-lechner2/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, 
                 which can be found in the Links page as well.</p>
-            <p class="scrollable-element blur">Have a pleasure exploring!</p>
             <div class="spacer"></div>
             <div class="spacer"></div>
             <div class="spacer"></div>
@@ -636,16 +635,16 @@ function aboutScreen() {
             <div class="spacer"></div>
             <h3 class="scrollable-element">Hi there!</h3>
             <p class="scrollable-element">As is written on the main page, 
-                <u style="background-color: #00000000">I'm a software developer focused on graphics and AI</u>. 
+                <u>I'm a software developer focused on graphics and AI</u>. 
                 I'm currently in my final year at 
                 Purdue University, and I will be graduating this May with a major 
-                in <b style="background-color: #00000000">computer science</b> and a minor in English. I'm looking for 
-                a <u style="background-color: #00000000">project-facing role</u>, and want to learn from those who have tread 
+                in <b>computer science</b> and a minor in English. I'm looking for 
+                a <u>project-facing role</u>, and want to learn from those who have tread 
                 before me as much as possible.</p>
             <div class="spacer"></div>
             <h2 class="scrollable-element">Who I am</h2>
             <p class="scrollable-element">Before getting into the nitty-gritty, 
-                I'll touch on who I am. <u style="background-color: #00000000">I thrive under pressure</u>. I love it. 
+                I'll touch on who I am. <u>I thrive under pressure</u>. I love it. 
                 It usually means there's more to <i>learn</i>.</p>
             <p class="scrollable-element"><b>I like optimizing and polishing</b> anything that 
                 I have the time for, I learn quickly, and I spend time outside of 
@@ -655,7 +654,7 @@ function aboutScreen() {
             <div class="spacer"></div>
             <h2 class="scrollable-element">Club president</h2>
             <p class="scrollable-element">I've also been lucky enough to be 
-                the <u style="background-color: #00000000">president of the roundnet (Spikeball) club</u> here at Purdue.</p>
+                the <u>president of the roundnet (Spikeball) club</u> here at Purdue.</p>
             <p class="scrollable-element"><b>During my presidency, 
                 we've grown from 300 to over 800 members</b>. We've hosted 
                 5 tournaments and run 3 other events while I have been on the 
@@ -664,22 +663,22 @@ function aboutScreen() {
             <div class="spacer"></div>
             <h2 class="scrollable-element">Fields of interest</h2>
             <p class="scrollable-element">While I would like to focus on 
-                <u style="background-color: #00000000">graphics and AI</u>, I have a passion for programming in general, 
+                <u>graphics and AI</u>, I have a passion for programming in general, 
                 especially work requiring <i>in-depth, creative problem 
                 solving.</i></p>
             <p class="scrollable-element">I've found that these two interests 
                 cross paths in game development, but that doesn't include the 
-                whole scope of the field. <b style="background-color: #00000000">Physics/game engine development and 
+                whole scope of the field. <b>Physics/game engine development and 
                 AI agent creation</b> are where I can apply myself best. I'd 
                 like to try my hand at gameplay programming beyond personal 
                 games as well, though.</p>
             <div class="spacer"></div>
             <h2 class="scrollable-element">AI work</h2>
             <p class="scrollable-element">I have done a lot of AI stuff. 
-                I've made <u style="background-color: #00000000">graph-search</u> models, <u style="background-color: #00000000">decision-tree</u> algorithms, 
-                <u style="background-color: #00000000">path-finding</u> agents, and <u style="background-color: #00000000">linear-optimization</u> algorithms.
-                I've dabbled in <u style="background-color: #00000000">classification</u> algorithms, and I've created 
-                one <u style="background-color: #00000000">neural network</u>.</p>
+                I've made <u>graph-search</u> models, <u>decision-tree</u> algorithms, 
+                <u>path-finding</u> agents, and <u>linear-optimization</u> algorithms.
+                I've dabbled in <u>classification</u> algorithms, and I've created 
+                one <u>neural network</u>.</p>
             <p class="scrollable-element">I also made AIs for enemies in a 
                 couple games. An example, that I've linked below, is currently 
                 up and running (and is a rather fun, quick, arcade-style game). I've gone 
@@ -699,22 +698,22 @@ function aboutScreen() {
             <p class="scrollable-element">I've made the barebones engines behind a couple  
                 indie games, and have created two technical 3d renderers 
                 to explore the concepts behind more advanced rendering techniques, 
-                such as <u style="background-color: #00000000">parallax mapping</u>, <u style="background-color: #00000000">different shader mappings</u>, 
-                and <u style="background-color: #00000000">global illumination</u>.</p>
-            <p class="scrollable-element">I've done projects with <u style="background-color: #00000000">image processing</u>, 
-                <u style="background-color: #00000000">procedural terrain generation</u>, and <u style="background-color: #00000000">particle simulation</u> (can you tell 
+                such as <u>parallax mapping</u>, <u>different shader mappings</u>, 
+                and <u>global illumination</u>.</p>
+            <p class="scrollable-element">I've done projects with <u>image processing</u>, 
+                <u>procedural terrain generation</u>, and <u>particle simulation</u> (can you tell 
                 that I like these ones?). The next project on my list 
                 is a fabric simulation. I don't yet know if I have the 
                 physics-expertise for it, but I want to learn, nonetheless</p>
             <div class="spacer"></div>
             <h2 class="scrollable-element">Algorithms, generally</h2>
             <p class="scrollable-element">Algorithms is a massive field. The more 
-                I learn, the more I realize I don't know. But <b style="background-color: #00000000">optimizing programs through 
+                I learn, the more I realize I don't know. But <b>optimizing programs through 
                 clever techniques and data structures will forever be an interest 
                 of mine.</b></p>
             <p class="scrollable-element">A very broad overview of what I've 
-                studied and implemented: <u style="background-color: #00000000">binary/quad/oct trees</u> and their corresponding 
-                manipulations, graph searches, linear optimization, <u style="background-color: #00000000">dynamic programming</u>, 
+                studied and implemented: <u>binary/quad/oct trees</u> and their corresponding 
+                manipulations, graph searches, linear optimization, <u>dynamic programming</u>, 
                 probabilistic algorithm analysis, and some stuff regarding sparse data 
                 sets.</p>
             <div class="spacer"></div>

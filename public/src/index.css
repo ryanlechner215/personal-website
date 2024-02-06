@@ -139,16 +139,6 @@ html {
     margin-left: 1.3vw;
     font-size: 2vw;
 }
-.center-div>p>b {
-    background-color: rgba(244, 15, 79, 0.335);
-    border-radius: 1vw;
-
-}
-.center-div>p>u {
-    background-color: rgba(229, 146, 12, 0.33);
-    border-radius: 1vw;
-    
-}
 .center-div>a {
     pointer-events: all;
     text-wrap: pretty;
@@ -230,11 +220,6 @@ html {
 .description>p {
     text-wrap: pretty;
     font-size: 2vw;
-}
-.description>*>b {
-    background-color: rgba(244, 15, 79, 0.335);
-    border-radius: 1vw;
-
 }
 .description>*>i {
     margin-left: 15vw;
