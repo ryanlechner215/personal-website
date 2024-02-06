@@ -594,11 +594,11 @@ function homeScreen() {
             <div class="spacer"></div>
             <div class="spacer"></div>
             <h1 class="scrollable-element blur">Welcome</h1>
-                <p class="scrollable-element blur"><b>My name is Ryan Lechner</b>, and <u>I'm
-                    a 3D-graphics and AI-focused software developer</u>. I'm currently looking 
+                <p class="scrollable-element blur">My name is Ryan Lechner, and I'm
+                    a 3D-graphics and AI-focused software developer. I'm currently looking 
                     for work in project-based roles where I can learn from industry professionals. 
                     For more details on my experience and specialties, 
-                    head to the about page.</p>
+                    head to the <u id="about-link" style="background-color: #00000000; font-weight: bold; pointer-events: all">about page.</u></p>
             <div class="spacer"></div>
             <p class="scrollable-element blur">If you want to play around with
                 the particles on this page, click and drag your mouse around.</p>
@@ -844,6 +844,15 @@ function transitionToHomeScreen() {
     setTimeout(() => {
         console.log("Transitioning to home screen");
         const container = document.getElementById("main-container");
+        const aboutLink = document.getElementById("about-link");
+        aboutLink.onclick = function() {
+            if (state != "transitioning" && state != "despawning") {
+                navigate("about");
+            }
+        };
+        aboutLink.addEventListener("mouseover", () => {
+            aboutLink.style.cursor = "pointer";
+        })
         window.addEventListener("contextmenu", preventDefaultFunc);
         scrollableElements = document.querySelectorAll(".scrollable-element");
         handleScroll();
