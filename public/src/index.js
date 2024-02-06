@@ -782,8 +782,8 @@ function projectsScreen() {
                 <h3>Arcade-style web game - (Jan. 2024)</h3>
                 <div class="description">
                     <div>
-                        <img src="./images/chuckle-nuts-pic.png" alt="arcade game pic"></img>
-                        <img src="./images/chuckle-nuts-high.gif" class="active" alt="arcade game gif"></img>
+                        <img src="./images/chuckle-nuts-pic.png" class="overlaid" alt="arcade game pic"></img>
+                        <img src="./images/chuckle-nuts-high.gif" class="active overlaid" alt="arcade game gif"></img>
                     </div>
                     <p>My contributions to this game-jam game cover most things gameplay-related: 
                         the enemy movement and concepts, collision detection, boss phases, and 
@@ -797,19 +797,86 @@ function projectsScreen() {
             <div class="project-unit scrollable-element left" style="background-color: rgba(251, 251, 11, 0.524)">
                 <div class="spacer2"></div>
                 <h2><a href="https://monstersofthesea.io/" target="_blank" rel="noopener noreferrer">Monsters of the Sea</a></h2>
-                <h3>Web version of board game - (November 2023 - current)</h3>
+                <h3>Web version of board game - (November 2023 to current)</h3>
                 <div class="description">
                     <div>
-                        <img src="./images/mots-pic.png" class="left-img" alt="pic of MOTS"></img>
-                        <img src="./images/mots-high.gif" class="active left-img" alt="gif of MOTS"></img>
+                        <img src="./images/mots-pic.png" class="left-img overlaid" alt="pic of MOTS"></img>
+                        <img src="./images/mots-high.gif" class="active left-img overlaid" alt="gif of MOTS"></img>
                     </div>
                     <p>Monsters of the Sea was originally a board game, and 
                         we are now making it playable on the web.</p>
                     <p>I am creating a series of bots for the user to play against, which 
                         range from simple decision-tree models to neural-networks. One of 
                         by biggest takeaways so far has been gettings bots to train each 
-                        other through simulated games in a semi-reinforcement environment.<p>
+                        other through simulated games in a semi-reinforcement environment.</p>
                     <p><i>Additional credits to: Quin Houck, Lucas Klopfenstein</i></p>
+                </div>
+                <div class="spacer2"></div>
+            </div>
+            <div class="spacer"></div>
+            <div class="project-unit scrollable-element" style="background-color: rgba(255, 0, 0, 0.693)">
+                <div class="spacer2"></div>
+                <h2>AI Models</h2>
+                <h3>Limited dataset models - (January 2023 to May 2023)</h3>
+                <div class="description">
+                    <div>
+                        <img class="quad-pics" src="./images/decision-tree-accuracies.png" alt="accuracies chart"></img>
+                        <img class="quad-pics" src="./images/number-reading.png" alt="number classification insight"></img>
+                        <img class="quad-pics" src="./images/stock-predictions.png" alt="stock predictions"></img>
+                        <img class="quad-pics" src="./images/stock-predictions-loss-graph.png" alt="stock prediction loss graph"></img>
+                    </div>
+                    <p>Through these few months, I explored many kinds of basic machine 
+                        learning models, including: convolutional neural nets, deep neural 
+                        nets, classification algorithms, entropy-based decision trees, 
+                        and SVMs.</p>
+                    <p><b>(Top left)</b> - accuracy vs depth of decision tree chart<br>
+                        <b>(Top right)</b> - regions of interest for number identification model<br>
+                        <b>(Bottom left)</b> - Stock predictions (blue is real, orange is predicted)<br>
+                        <b>(Bottom right)</b> - Training length vs loss for stock prediction</p>
+                </div>
+                <div class="spacer2"></div>
+            </div>
+            <div class="spacer"></div>
+            <div class="project-unit scrollable-element left" style="background-color: rgba(237, 17, 207, 0.655)">
+                <div class="spacer2"></div>
+                <h2>Graphics Projects</h2>
+                <h3>Assorted graphics techniques - (August 2022 to November 2022)</h3>
+                <div class="description">
+                    <div>
+                        <img class="quad-pics" src="./images/pre-strawberry.png" alt="two red dots"></img>
+                        <img style="position: absolute; left: 30vw" class="quad-pics active" src="./images/post-strawberry.gif" alt="strawberry gif"></img>
+                        <img class="quad-pics" src="./images/normal-mapping.png" alt="pic of normal mapping"></img>
+                        <img class="quad-pics" src="./images/pre-astley.png" alt="two white dots"></img>
+                        <img style="position: absolute; left: 30vw" class="quad-pics active" src="./images/post-astley.gif" alt="surprise gif"></img>
+                        <img class="quad-pics" src="./images/lsystem.png" alt="l-system"></img>
+                    </div>
+                    <p>These are snippets of the graphics work that I did junior year. I 
+                        wrote programs for normal, bump, shadow, and parallax mappings, I
+                        did image processing and filtering, and I began some work on 
+                        procedural generation that is constrained by rules.</p>
+                    <p><b>(Top left)</b> - Gif of strawberry under my image filter<br>
+                        <b>(Top right)</b> - Normal mapping example<br>
+                        <b>(Bottom left)</b> - Like the strawberry, but better<br>
+                        <b>(Bottom right)</b> - An l-system for procedural rules-defined generation</p>
+                </div>
+                <div class="spacer2"></div>
+            </div>
+            <div class="spacer"></div>
+            <div class="project-unit scrollable-element" style="background-color: rgba(12, 225, 97, 0.664)">
+                <div class="spacer2"></div>
+                <h2>3D Rendering</a></h2>
+                <h3>3D render of 2d array sorting - (July 2022)</h3>
+                <div class="description">
+                    <div>
+                        <img src="./images/3drender.png" class="overlaid" alt="pic of 3D render"></img>
+                        <img src="./images/3d-render-high.gif" class="active overlaid" alt="gif of 3D render"></img>
+                    </div>
+                    <p>Starting with just a rectangle-drawing function, I worked through 
+                        this trigonometry-based renderer during my summer job. 
+                        This project was a fun mental exercise.</p>
+                    <p>The sorting algorithm being used in the gif is bubble sort, 
+                        for visual purposes, but this project was a great visualization 
+                        for learning algorithms as we went over them in class.</p>
                 </div>
                 <div class="spacer2"></div>
             </div>

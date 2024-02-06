@@ -240,13 +240,19 @@ html {
     max-width: 70vw;
     display: inline-block;
 }
-.description>*>img {
+.overlaid {
     position: absolute;
     left: 45vw;
-    margin-left: 2.5vw;
     border-radius: 8vw;
     width: 25vw;
     height: 25vw;
+    object-fit: cover;
+}
+.quad-pics {
+    margin-left: 2.5vw;
+    border-radius: 2vw;
+    width: 12vw;
+    height: 12vw;
     object-fit: cover;
 }
 .description>div {
