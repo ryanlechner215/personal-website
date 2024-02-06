@@ -655,7 +655,7 @@ function aboutScreen() {
             <div class="spacer"></div>
             <h2 class="scrollable-element">Club president</h2>
             <p class="scrollable-element">I've also been lucky enough to be 
-                the <u>president of the roundnet (Spikeball) club</u> here at Purdue.</p>
+                the <u style="background-color: #00000000">president of the roundnet (Spikeball) club</u> here at Purdue.</p>
             <p class="scrollable-element"><b>During my presidency, 
                 we've grown from 300 to over 800 members</b>. We've hosted 
                 5 tournaments and run 3 other events while I have been on the 
@@ -664,26 +664,26 @@ function aboutScreen() {
             <div class="spacer"></div>
             <h2 class="scrollable-element">Fields of interest</h2>
             <p class="scrollable-element">While I would like to focus on 
-                <u>graphics and AI</u>, I have a passion for programming in general, 
+                <u style="background-color: #00000000">graphics and AI</u>, I have a passion for programming in general, 
                 especially work requiring <i>in-depth, creative problem 
                 solving.</i></p>
             <p class="scrollable-element">I've found that these two interests 
                 cross paths in game development, but that doesn't include the 
-                whole scope of the field. <b>Physics/game engine development and 
+                whole scope of the field. <b style="background-color: #00000000">Physics/game engine development and 
                 AI agent creation</b> are where I can apply myself best. I'd 
                 like to try my hand at gameplay programming beyond personal 
                 games as well, though.</p>
             <div class="spacer"></div>
             <h2 class="scrollable-element">AI work</h2>
             <p class="scrollable-element">I have done a lot of AI stuff. 
-                I've made <u>graph-search</u> models, <u>decision-tree</u> algorithms, 
-                <u>path-finding</u> agents, and <u>linear-optimization</u> algorithms.
-                I've dabbled in <u>classification</u> algorithms, and I've created 
-                one <u>neural network</u>.</p>
+                I've made <u style="background-color: #00000000">graph-search</u> models, <u style="background-color: #00000000">decision-tree</u> algorithms, 
+                <u style="background-color: #00000000">path-finding</u> agents, and <u style="background-color: #00000000">linear-optimization</u> algorithms.
+                I've dabbled in <u style="background-color: #00000000">classification</u> algorithms, and I've created 
+                one <u style="background-color: #00000000">neural network</u>.</p>
             <p class="scrollable-element">I also made AIs for enemies in a 
                 couple games. An example, that I've linked below, is currently 
                 up and running (and is a rather fun, quick, arcade-style game). I've gone 
-                into more detail on the projects page, but <b>the snake boss</b> is the 
+                into more detail on the projects page, but the snake boss is the 
                 AI agent that I'm alluding to, and it spawns at 500 points. For a 
                 24-hour sprint to produce for a game jam, I'm rather proud of it.</p>
             <a class="scrollable-element" href="https://main.d1rk2ynogd8lka.amplifyapp.com/" target="_blank" rel="noopener noreferrer">Arcade Game</a>
