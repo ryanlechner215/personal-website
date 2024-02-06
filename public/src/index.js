@@ -689,7 +689,7 @@ function aboutScreen() {
             <a class="scrollable-element" href="https://main.d1rk2ynogd8lka.amplifyapp.com/" target="_blank" rel="noopener noreferrer">Arcade Game</a>
             <p class="scrollable-element"><br>I'm in the process of making 
                 another neural net for an indie game that I'm helping with. The 
-                purpose of the net is to <u>train a series of bots</u>. For an idea 
+                purpose of the net is to train a series of bots. For an idea 
                 of the outcome, think of the chess bots implemented by chess.com, 
                 albeit with a much smaller training set.</p>
             <a class="scrollable-element" href="https://monstersofthesea.io" target="_blank" rel="noopener noreferrer">Monsters of the Sea</a>
@@ -697,24 +697,24 @@ function aboutScreen() {
             <div class="spacer"></div>
             <h2 class="scrollable-element">Graphics experience</h2>
             <p class="scrollable-element">I've made the barebones engines behind a couple  
-                indie games, and have created <b>two technical 3d renderers</b> 
+                indie games, and have created two technical 3d renderers 
                 to explore the concepts behind more advanced rendering techniques, 
-                such as <u>parallax mapping</u>, <u>different shader mappings</u>, 
-                and <u>global illumination</u>.</p>
-            <p class="scrollable-element">I've done projects with <u>image processing</u>, 
-                <u>procedural terrain generation</u>, and <u>particle simulation</u> (can you tell 
+                such as <u style="background-color: #00000000">parallax mapping</u>, <u style="background-color: #00000000">different shader mappings</u>, 
+                and <u style="background-color: #00000000">global illumination</u>.</p>
+            <p class="scrollable-element">I've done projects with <u style="background-color: #00000000">image processing</u>, 
+                <u style="background-color: #00000000">procedural terrain generation</u>, and <u style="background-color: #00000000">particle simulation</u> (can you tell 
                 that I like these ones?). The next project on my list 
                 is a fabric simulation. I don't yet know if I have the 
                 physics-expertise for it, but I want to learn, nonetheless</p>
             <div class="spacer"></div>
             <h2 class="scrollable-element">Algorithms, generally</h2>
             <p class="scrollable-element">Algorithms is a massive field. The more 
-                I learn, the more I realize I don't know. But <b>optimizing programs through 
+                I learn, the more I realize I don't know. But <b style="background-color: #00000000">optimizing programs through 
                 clever techniques and data structures will forever be an interest 
                 of mine.</b></p>
             <p class="scrollable-element">A very broad overview of what I've 
-                studied and implemented: <u>binary/quad/oct trees</u> and their corresponding 
-                manipulations, graph searches, linear optimization, <u>dynamic programming</u>, 
+                studied and implemented: <u style="background-color: #00000000">binary/quad/oct trees</u> and their corresponding 
+                manipulations, graph searches, linear optimization, <u style="background-color: #00000000">dynamic programming</u>, 
                 probabilistic algorithm analysis, and some stuff regarding sparse data 
                 sets.</p>
             <div class="spacer"></div>
