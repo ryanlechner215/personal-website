@@ -177,6 +177,26 @@ html {
     pointer-events: all !important;
 }
 
+.icon-left {
+    height: 5vw;
+    width: 5vw;
+    object-fit: cover;
+    position: absolute;
+    left: -7vw;
+    top: 40vw;
+}
+
+.icon-right {
+    height: 5vw;
+    width: 5vw;
+    object-fit: cover;
+    position: absolute;
+    left: 67vw;
+    top: 40vw;
+    border-radius: 1vw;
+    background-color: white;
+}
+
 
 
 

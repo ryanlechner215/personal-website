@@ -634,6 +634,15 @@ function aboutScreen() {
             <h1 style="margin-top: -6.5vw; margin-left: 2.7vw" class="scrollable-element">Lechner</h1>
             <div class="spacer"></div>
 
+            <div>
+                <img src="./images/icons/cpp.png" alt="c++ icon" class="scrollable-element icon-left"/>
+                <img style="margin-left: -3vw; margin-top: -6vw" src="./images/icons/c.png" alt="c icon" class="scrollable-element icon-left"/>
+                <img style="margin-left: -6vw" src="./images/icons/python.png" alt="python icon" class="scrollable-element icon-left"/>
+                <img style="margin-top: -6vw; margin-left: -3vw" src="./images/icons/opengl.png" alt="opengl icon" class="scrollable-element icon-right"/>
+                <img src="./images/icons/js.png" alt="js icon" class="scrollable-element icon-right"/>
+                <img style="margin-top: -6vw; margin-left: 3vw" src="./images/icons/java.png" alt="java icon" class="scrollable-element icon-right"/>
+            </div>
+
             <h3 class="scrollable-element">Hi there!</h3>
             <p class="scrollable-element">As is written on the main page, 
                 <u>I'm a software developer focused on artificial intelligence</u>. 
