@@ -874,8 +874,7 @@ function projectsScreen() {
                     <p>Starting with just a rectangle-drawing function, I worked through 
                         this trigonometry-based renderer during my summer job. 
                         This project was a fun mental exercise.</p>
-                    <p>The sorting algorithm being used in the gif is bubble sort, 
-                        for visual purposes, but this project was a great visualization 
+                    <p>This project was a great visualization tool 
                         for learning algorithms as we went over them in class.</p>
                 </div>
                 <div class="spacer2"></div>
