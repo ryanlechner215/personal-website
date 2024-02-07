@@ -596,7 +596,7 @@ function homeScreen() {
             <h1 class="scrollable-element blur">Welcome</h1>
                 <p class="scrollable-element blur">My name is Ryan Lechner, and I'm
                     an AI and graphics-focused software developer. I'm currently looking 
-                    for work in project-based roles where I can learn from industry professionals.</p> 
+                    for work for after I graduate this May.</p>
             <div class="spacer"></div>
             <p class="scrollable-element blur">If you want to play around with
                 the particles on this page, click and drag your mouse around.</p>
