@@ -598,7 +598,7 @@ function homeScreen() {
                     an AI and graphics-focused software developer. I'm currently looking 
                     for work for after I graduate this May.</p>
             <div class="spacer"></div>
-            <p class="scrollable-element blur">If you want to play around with
+            <p class="scrollable-element blur">If you want to interact with
                 the particles on this page, click and drag your mouse around.</p>
             <p class="scrollable-element blur"><b>Left-click will attract</b> nearby
                 particles, and <b>right-click will repel</b> them.</p>
