@@ -527,10 +527,10 @@ function displayHeader() {
         <button id="home-button">Home</button>
 
         <div class="header-line" style="flex: 3"></div>
-        <button id="about-button">About</button>
+        <button id="projects-button">Projects</button>
 
         <div class="header-line" style="flex: 0.6"></div>
-        <button id="projects-button">Projects</button>
+        <button id="about-button">About</button>
 
         <div class="header-line" style="flex: 0.6"></div>
         <button id="links-button">Links / Contact Info</button>
@@ -595,10 +595,8 @@ function homeScreen() {
             <div class="spacer"></div>
             <h1 class="scrollable-element blur">Welcome</h1>
                 <p class="scrollable-element blur">My name is Ryan Lechner, and I'm
-                    an AI-focused software developer. I'm currently looking 
-                    for work in project-based roles where I can learn from industry professionals. 
-                    For more details on my experience and specialties, 
-                    head to the <u id="about-link" style="background-color: #00000000; font-weight: bold; pointer-events: all">about page.</u></p>
+                    an AI and graphics-focused software developer. I'm currently looking 
+                    for work in project-based roles where I can learn from industry professionals.</p> 
             <div class="spacer"></div>
             <p class="scrollable-element blur">If you want to play around with
                 the particles on this page, click and drag your mouse around.</p>
@@ -648,63 +646,20 @@ function aboutScreen() {
                 <u>I'm a software developer focused on artificial intelligence</u>. 
                 I'm currently in my final year at 
                 Purdue University, and I will be graduating this May with a major 
-                in <b>computer science</b> and a minor in English. I'm looking for 
-                a <u>project-facing role</u>, and want to learn from those who have tread 
-                before me as much as possible.</p>
-            <div class="spacer"></div>
-
-            <h2 class="scrollable-element">Who I am</h2>
-            <p class="scrollable-element">Before getting into the nitty-gritty, 
-                I'll touch on who I am. <u>I thrive under pressure</u>. I love it. 
-                It usually means there's more to <i>learn</i>.</p>
-            <p class="scrollable-element"><b>I like optimizing and polishing</b> anything that 
-                I have the time for, I learn quickly, and I spend time outside of 
-                work and school learning whenever I can. I have a <i>ton</i> 
-                of hobbies and interests, but I'll get more into those at the 
-                bottom of this page.</p>
-            <div class="spacer"></div>
-
-            <h2 class="scrollable-element">Club president</h2>
-            <p class="scrollable-element">I've also been lucky enough to be 
-                the <u>president of the roundnet (Spikeball) club</u> here at Purdue.</p>
-            <p class="scrollable-element"><b>During my presidency, 
-                we've grown from 300 to over 800 members</b>. We've hosted 
-                5 tournaments and run 3 other events while I have been on the 
-                executive team. I also compete around the mid-west, which 
-                has been an amazing travel opportunity for me.</p>
-            <div class="spacer"></div>
-
-            <h2 class="scrollable-element">Fields of interest</h2>
-            <p class="scrollable-element">I plan to focus on <u>AI and machine 
-                learning</u> eventually, but I have a passion for programming in general, 
-                especially work requiring <i>in-depth, creative problem 
-                solving.</i> So, software development roles are what I'm currently looking for.</p>
-            <p class="scrollable-element">I've found that these two interests 
-                cross paths in game development, but that doesn't include the 
-                whole scope of the field. <b>Physics/game engine development and 
-                AI agent creation</b> are where I can apply myself best. I'd 
-                like to try my hand at gameplay programming beyond personal 
-                games as well, though.</p>
+                in <b>computer science</b> and a minor in English. I'm looking to get 
+                a job in the tech or games industry once I'm out of college.</p>
             <div class="spacer"></div>
 
             <h2 class="scrollable-element">AI work</h2>
-            <p class="scrollable-element">I have done a lot of AI stuff. 
-                I've made <u>graph-search</u> models, <u>decision-tree</u> algorithms, 
-                <u>path-finding</u> agents, and <u>linear-optimization</u> algorithms.
-                I've dabbled in <u>classification</u> algorithms, and I've created 
-                one <u>neural network</u>.</p>
-            <p class="scrollable-element">I also made AI algorithms for a 
+            <p class="scrollable-element">I've made AI algorithms for a 
                 couple indie games. One example, that I've linked below, is currently 
-                up and running (and is a rather fun, quick, arcade-style game). I've gone 
-                into more detail on the projects page, but the snake boss is the 
-                AI agent that I'm alluding to, and it spawns at 500 points. For a 
+                up and running (and is a rather fun, quick, arcade-style game). For a 
                 24-hour sprint to produce for a game jam, I'm rather proud of it.</p>
             <a class="scrollable-element" href="https://main.d1rk2ynogd8lka.amplifyapp.com/" target="_blank" rel="noopener noreferrer">Arcade Game</a>
             <p class="scrollable-element"><br>I'm in the process of making 
-                another neural net for an indie game that I'm helping with. The 
-                purpose of the net is to train a series of bots. For an idea 
-                of the outcome, think of the chess bots implemented by chess.com, 
-                albeit with a much smaller training set.</p>
+                another neural net in TensorFlow for an indie game that I'm helping with. The 
+                purpose of the net is to train a series of bots. This has been great for 
+                translating what I've learned in classes to production-level code.</p>
             <a class="scrollable-element" href="https://monstersofthesea.io" target="_blank" rel="noopener noreferrer">Monsters of the Sea</a>
             <div class="spacer"></div>
             <div class="spacer"></div>
@@ -713,25 +668,22 @@ function aboutScreen() {
             <p class="scrollable-element">I've made the barebones engines behind a couple  
                 indie games, and have created two technical 3D renderers 
                 to explore the concepts behind some rendering techniques, 
-                such as <u>parallax mapping</u>, <u>different shader mappings</u>, 
-                and <u>global illumination</u>.</p>
+                such as <u>parallax, normal, and bump mappings</u>, 
+                as well as <u>global illumination and ambient occlusion</u>.</p>
             <p class="scrollable-element">I've done projects with <u>image processing</u>, 
                 <u>procedural terrain generation</u>, and <u>particle simulation</u> (can you tell 
                 that I like these ones?). The next project on my list 
-                is a fabric simulation. I don't yet know if I have the 
-                physics-expertise for it, but I want to learn, nonetheless</p>
+                is an indie voxel game-focused game engine.</p>
             <div class="spacer"></div>
 
-            <h2 class="scrollable-element">Algorithms, generally</h2>
-            <p class="scrollable-element">Algorithms is a massive field. The more 
-                I learn, the more I realize I don't know. But <b>optimizing programs through 
-                clever techniques and data structures will forever be an interest 
-                of mine.</b></p>
-            <p class="scrollable-element">A very broad overview of what I've 
-                studied and implemented: <u>binary/quad/oct trees</u> and their corresponding 
-                manipulations, graph searches, linear optimization, <u>dynamic programming</u>, 
-                probabilistic algorithm analysis, and some stuff regarding sparse data 
-                sets.</p>
+            <h2 class="scrollable-element">Club president</h2>
+            <p class="scrollable-element">I've been lucky enough to be 
+                the <u>president of the roundnet (Spikeball) club</u> here at Purdue.</p>
+            <p class="scrollable-element">The club was one of the best parts of my 
+                freshman year. So, it feels great to be able to push it forward for 
+                the next set of students. <b>During my presidency, 
+                we've grown from 300 to over 800 members</b>, and I'm ecstatic that 
+                I've been able to bring so many students together.</p>
             <div class="spacer"></div>
 
             <h2 class="scrollable-element">I mentioned hobbies...</h2>
@@ -926,15 +878,6 @@ function transitionToHomeScreen() {
     setTimeout(() => {
         console.log("Transitioning to home screen");
         const container = document.getElementById("main-container");
-        const aboutLink = document.getElementById("about-link");
-        aboutLink.onclick = function() {
-            if (state != "transitioning" && state != "despawning") {
-                navigate("about");
-            }
-        };
-        aboutLink.addEventListener("mouseover", () => {
-            aboutLink.style.cursor = "pointer";
-        })
         window.addEventListener("contextmenu", preventDefaultFunc);
         scrollableElements = document.querySelectorAll(".scrollable-element");
         handleScroll();
